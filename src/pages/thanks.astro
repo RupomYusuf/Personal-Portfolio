@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message sent"
+  description="Thanks for reaching out — your message has been received."
+  noindex
+>
+  <section class="container thanks">
+    <h1>Message received</h1>
+    <p>Thanks for reaching out — I'll get back to you soon.</p>
+    <p>
+      Meanwhile, <a href="/work/">browse the work</a> or <a href="/">go home</a>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks {
+    padding-block: var(--space-5);
+    max-width: 42rem;
+  }
+
+  h1 {
+    color: var(--accent);
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+</style>

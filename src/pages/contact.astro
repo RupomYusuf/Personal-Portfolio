@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config';
 
-const formConnected = Boolean(site.formspreeId);
 const socialLinks = [
   ...site.socials,
   ...(site.fiverr.url ? [{ label: 'Fiverr', url: site.fiverr.url }] : []),
@@ -26,45 +25,42 @@ const socialLinks = [
         <ul class="contact__socials">
           {socialLinks.map((s) => (
             <li>
-              <a href={s.url}>{s.label}</a>
+              <a href={s.url} rel="noopener noreferrer">
+                {s.label}
+              </a>
             </li>
           ))}
         </ul>
       )
     }
 
-    {
-      formConnected ? (
-        <form id="contact-form" action={`https://formspree.io/f/${site.formspreeId}`} method="POST" data-email={site.email}>
-          <label>
-            Name
-            <input type="text" name="name" required autocomplete="name" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required autocomplete="email" />
-          </label>
-          <label>
-            Project details
-            <textarea name="message" rows="6" required />
-          </label>
-          <button type="submit">Send message</button>
-          <p class="form-status" role="status" aria-live="polite" />
-        </form>
-      ) : (
-        <p class="contact__form-note">
-          Prefer a form? Email is fastest for now — the contact form switches on
-          once a Formspree form ID is set in <code>src/config.ts</code>.
-        </p>
-      )
-    }
+    <form
+      name="contact"
+      method="POST"
+      action="/thanks/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+      <label>
+        Name
+        <input type="text" name="name" required autocomplete="name" />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>
+        Project details
+        <textarea name="message" rows="6" required />
+      </label>
+      <button type="submit">Send message</button>
+    </form>
   </section>
 </BaseLayout>
-
-<script>
-  import { initContactForm } from '../scripts/contact-form';
-  initContactForm();
-</script>
 
 <style>
   .contact {
@@ -87,6 +83,7 @@ const socialLinks = [
 
   .contact__socials {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2);
     list-style: none;
     padding: 0;
@@ -120,9 +117,5 @@ const socialLinks = [
     border: 0;
     cursor: pointer;
     justify-self: start;
-  }
-
-  .contact__form-note {
-    color: var(--muted);
   }
 </style>

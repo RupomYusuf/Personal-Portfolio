@@ -1,5 +1,5 @@
-// Central site configuration. Every PLACEHOLDER here is swapped in one pass
-// at launch — see the spec's "Known facts" section.
+// Central site configuration. Real values as of launch; remaining swaps are
+// listed in README.md.
 
 export const site = {
   name: 'Rupom Morol',
@@ -9,17 +9,18 @@ export const site = {
   yearsExperience: 8,
   fiverr: {
     level: 'Fiverr Level 2 Seller',
-    url: '', // PLACEHOLDER — swap at launch (Fiverr profile URL)
+    url: 'https://www.fiverr.com/users/rupommoral10',
   },
-  availability: 'Currently booking new projects', // or: 'Booked through March 2027'
-  email: 'hello@example.com', // PLACEHOLDER — swap at launch
+  availability: 'Currently booking new projects', // or: 'Booked through <month>'
+  email: 'abdullahyusufrupom@gmail.com',
   socials: [
-    { label: 'Behance', url: '' }, // PLACEHOLDER — swap at launch
-    { label: 'Instagram', url: '' }, // PLACEHOLDER — swap at launch
-    { label: 'LinkedIn', url: '' }, // PLACEHOLDER — swap at launch
+    { label: 'WhatsApp', url: 'https://wa.me/8801641876853' },
+    { label: 'Instagram', url: 'https://www.instagram.com/rupoommoral10/' },
+    { label: 'Behance', url: 'https://www.behance.net/RupomsDesign' },
+    { label: 'Behance · Print', url: 'https://www.behance.net/rupomm' },
   ],
-  formspreeId: '', // set at launch to activate the contact form; '' renders the email fallback
+  // Contact form is Netlify-native (data-netlify) — no third-party service.
+  featuredCount: 6,
   // Ceiling, not a guarantee: home renders however many projects actually carry
   // featured: true, up to this number (may be fewer — that's handled gracefully).
-  featuredCount: 6,
 } as const;
