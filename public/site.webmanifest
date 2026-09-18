@@ -1,0 +1,9 @@
+{
+  "name": "Rupom Morol — Graphic Designer",
+  "short_name": "Rupom Morol",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111318",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
