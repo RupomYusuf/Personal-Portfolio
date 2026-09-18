@@ -2,78 +2,168 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getFeatured } from '../lib/projects';
+import { getProjectsSorted, getFeatured } from '../lib/projects';
 import { site } from '../config';
 import portraitHero from '../assets/portrait-hero.jpg';
+import imgIdentity from '../assets/projects/leafiesta-logo/cover.jpg';
+import imgIllustration from '../assets/projects/rose-lady/cover.jpg';
+import imgPrint from '../assets/projects/pizza-flyer/cover.jpg';
+import imgSocial from '../assets/projects/this-city-is-ours/cover.jpg';
 
 const featured = await getFeatured(site.featuredCount);
+const projectCount = (await getProjectsSorted()).length;
+
+const services = [
+  { name: 'Logo & Brand Identity', img: imgIdentity, alt: 'Leafiesta logo design' },
+  { name: 'Character & Illustration', img: imgIllustration, alt: 'Rose Lady illustration' },
+  { name: 'Print & Flyer Design', img: imgPrint, alt: 'Pizza flyer design' },
+  { name: 'Poster & Social Graphics', img: imgSocial, alt: 'This City Is Ours poster art' },
+];
 ---
 
 <BaseLayout title={site.name} description={site.intro} ogImage={portraitHero.src}>
   <section class="container hero">
-    <div class="hero__text">
-      <p class="hero__availability">{site.availability}</p>
-      <h1 class="hero__title">{site.name}</h1>
-      <p class="hero__role">{site.role} — {site.intro}</p>
-      <p class="hero__trust">
-        {site.yearsExperience} years of experience · {site.fiverr.level}
-      </p>
-      <p class="hero__cta"><a href="/contact/">Get in touch</a></p>
+    <p class="hero__availability">{site.availability}</p>
+    <div class="hero__name" aria-label={site.name}>
+      <span class="hero__word hero__word--back" aria-hidden="true">Rupom</span>
+      <div class="hero__portrait">
+        <Image
+          src={portraitHero}
+          alt={`Portrait of ${site.name}, graphic designer`}
+          width={1000}
+          priority
+        />
+      </div>
+      <span class="hero__word hero__word--front" aria-hidden="true">Morol</span>
     </div>
-    <div class="hero__photo">
-      <Image
-        src={portraitHero}
-        alt={`Portrait of ${site.name}, graphic designer`}
-        width={1000}
-        priority
-      />
+    <div class="hero__under">
+      <p class="hero__role">{site.role}</p>
+      <p class="hero__intro">{site.intro}</p>
+      <p class="hero__cta"><a href="/contact/">Get in touch</a></p>
     </div>
   </section>
 
+  <section class="container stats" data-reveal>
+    <div class="stats__item"><strong>8+</strong><span>Years of experience</span></div>
+    <div class="stats__item"><strong>{projectCount}</strong><span>Projects in this portfolio</span></div>
+    <div class="stats__item"><strong>L2</strong><span>Fiverr Level 2 Seller</span></div>
+  </section>
+
+  <section class="container services" data-reveal>
+    <h2 class="services__title">What I do</h2>
+    <ul class="services__list">
+      {
+        services.map((s) => (
+          <li class="services__row">
+            <span class="services__name">{s.name}</span>
+            <img class="services__thumb" src={s.img.src} alt={s.alt} loading="lazy" width="112" height="84" />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
   <section class="container" data-reveal>
-    <h2>Selected work</h2>
+    <div class="work__head">
+      <h2>Selected work</h2>
+      <p><a href="/work/">See all work →</a></p>
+    </div>
     <div class="grid">
       {featured.map((p) => <ProjectCard project={p} />)}
     </div>
-    <p><a href="/work/">See all work →</a></p>
+  </section>
+
+  <section class="cta" data-reveal>
+    <div class="container cta__inner">
+      <h2 class="cta__title">Have work that needs a designer?</h2>
+      <p class="cta__email">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    align-items: end;
-    gap: var(--space-3);
-    padding-block: var(--space-5) var(--space-4);
-    overflow-x: clip;
+    padding-block: var(--space-2) var(--space-3);
   }
 
   .hero__availability {
     color: var(--accent);
     font-weight: 600;
-    margin: 0;
-  }
-
-  .hero__title {
-    font-size: clamp(3.5rem, 12vw, 9rem);
     margin: 0 0 var(--space-2);
-    position: relative;
-    z-index: 2;
-    /* type breaks the grid and runs over the portrait edge */
-    width: 175%;
-    max-width: none;
-    text-transform: uppercase;
   }
 
-  .hero__role {
-    font-size: 1.3rem;
-    max-width: 40rem;
+  /* the name IS the design: two giant lines, portrait sandwiched between */
+  .hero__name {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__word {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(4.5rem, 19vw, 17rem);
+    line-height: 0.86;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
     color: var(--ink);
   }
 
-  .hero__trust {
+  .hero__word--back {
+    align-self: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__word--front {
+    align-self: flex-end;
+    position: relative;
+    z-index: 3;
+    margin-top: -0.18em;
+  }
+
+  .hero__portrait {
+    align-self: center;
+    width: clamp(14rem, 34vw, 30rem);
+    margin-block: -0.65em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__portrait::before {
+    content: '';
+    position: absolute;
+    inset: auto -7% -6% -7%;
+    height: 38%;
+    background: var(--accent);
+  }
+
+  .hero__portrait :global(img) {
+    position: relative;
+    display: block;
+  }
+
+  .hero__under {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .hero__role {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .hero__intro {
+    max-width: 44rem;
     color: var(--muted);
+    margin: 0;
   }
 
   .hero__cta a {
@@ -94,49 +184,125 @@ const featured = await getFeatured(site.featuredCount);
     transform: scale(0.98);
   }
 
-  .hero__photo {
-    position: relative;
-  }
-
-  .hero__photo::before {
-    content: '';
-    position: absolute;
-    left: 45%;
-    right: -6%;
-    bottom: -5%;
-    height: 42%;
-    background: var(--accent);
-  }
-
-  .hero__photo :global(img) {
-    position: relative;
-    z-index: 1;
-    display: block;
-  }
-
   @media (max-width: 56rem) {
-    .hero {
-      grid-template-columns: 1fr;
-      padding-block: var(--space-3) var(--space-4);
-    }
-
-    .hero__title {
-      width: 100%;
-    }
-
-    .hero__photo {
-      max-width: 24rem;
+    .hero__portrait {
+      width: min(70vw, 22rem);
+      align-self: flex-end;
     }
   }
 
-  h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-block: 1px solid var(--line);
+  }
+
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stats__item strong {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    color: var(--accent);
+  }
+
+  .stats__item span {
+    color: var(--muted);
+  }
+
+  .services {
+    padding-block: var(--space-4);
+  }
+
+  .services__title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin: 0 0 var(--space-3);
+  }
+
+  .services__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .services__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    border-top: 1px solid var(--line);
+    transition: background 0.25s ease;
+  }
+
+  .services__row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .services__row:hover {
+    background: var(--surface);
+  }
+
+  .services__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4.5vw, 3.4rem);
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .services__row:hover .services__name {
+    color: var(--accent);
+  }
+
+  .services__thumb {
+    width: 7rem;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid var(--line);
+  }
+
+  .work__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .work__head h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: var(--space-3);
-    margin-bottom: var(--space-3);
+    margin-block: var(--space-3) var(--space-4);
+  }
+
+  .cta {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  .cta__inner {
+    padding-block: var(--space-5);
+  }
+
+  .cta__title {
+    color: var(--accent-ink);
+    font-size: clamp(2.4rem, 7vw, 5.5rem);
+    text-transform: uppercase;
+    max-width: 60rem;
+  }
+
+  .cta__email a {
+    color: var(--accent-ink);
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 600;
   }
 </style>
