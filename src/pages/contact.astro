@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config';
+
+const formConnected = Boolean(site.formspreeId);
+const socialLinks = [
+  ...site.socials,
+  ...(site.fiverr.url ? [{ label: 'Fiverr', url: site.fiverr.url }] : []),
+].filter((s) => s.url);
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Get in touch with ${site.name} — ${site.availability}.`}
+>
+  <section class="container contact">
+    <h1>Contact</h1>
+    <p class="contact__availability">{site.availability}</p>
+
+    <p class="contact__email">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+
+    {
+      socialLinks.length > 0 && (
+        <ul class="contact__socials">
+          {socialLinks.map((s) => (
+            <li>
+              <a href={s.url}>{s.label}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      formConnected ? (
+        <form id="contact-form" action={`https://formspree.io/f/${site.formspreeId}`} method="POST" data-email={site.email}>
+          <label>
+            Name
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            Project details
+            <textarea name="message" rows="6" required />
+          </label>
+          <button type="submit">Send message</button>
+          <p class="form-status" role="status" aria-live="polite" />
+        </form>
+      ) : (
+        <p class="contact__form-note">
+          Prefer a form? Email is fastest for now — the contact form switches on
+          once a Formspree form ID is set in <code>src/config.ts</code>.
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form';
+  initContactForm();
+</script>
+
+<style>
+  .contact {
+    padding-block: var(--space-4) var(--space-5);
+    max-width: 42rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .contact__availability {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .contact__email a {
+    font-size: 1.4rem;
+  }
+
+  .contact__socials {
+    display: flex;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+  }
+
+  form {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  label {
+    display: grid;
+    gap: 0.25rem;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    font: inherit;
+    padding: 0.6rem;
+    border: 1px solid var(--line);
+  }
+
+  button {
+    font: inherit;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: 0;
+    cursor: pointer;
+    justify-self: start;
+  }
+
+  .contact__form-note {
+    color: var(--muted);
+  }
+</style>
