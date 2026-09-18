@@ -11,6 +11,7 @@ import imgPrint from '../assets/projects/pizza-flyer/cover.jpg';
 import imgSocial from '../assets/projects/this-city-is-ours/cover.jpg';
 
 const featured = await getFeatured(site.featuredCount);
+const stack = featured.slice(0, 3);
 const projectCount = (await getProjectsSorted()).length;
 
 const services = [
@@ -18,6 +19,15 @@ const services = [
   { name: 'Character & Illustration', img: imgIllustration, alt: 'Rose Lady illustration' },
   { name: 'Print & Flyer Design', img: imgPrint, alt: 'Pizza flyer design' },
   { name: 'Poster & Social Graphics', img: imgSocial, alt: 'This City Is Ours poster art' },
+];
+
+const tools = [
+  { slug: 'adobeillustrator', label: 'Illustrator' },
+  { slug: 'adobephotoshop', label: 'Photoshop' },
+  { slug: 'figma', label: 'Figma' },
+  { slug: 'canva', label: 'Canva' },
+  { slug: 'behance', label: 'Behance' },
+  { slug: 'fiverr', label: 'Fiverr' },
 ];
 ---
 
@@ -27,6 +37,23 @@ const services = [
     <div class="hero__name" aria-label={site.name}>
       <span class="hero__word hero__word--back" aria-hidden="true">Rupom</span>
       <div class="hero__portrait">
+        <div class="hero__badge" aria-hidden="true">
+          <svg viewBox="0 0 100 100" class="hero__badge-ring">
+            <defs>
+              <path
+                id="badge-circle"
+                d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
+              ></path>
+            </defs>
+            <circle cx="50" cy="50" r="50" class="hero__badge-bg"></circle>
+            <text class="hero__badge-text">
+              <textPath href="#badge-circle">
+                Available for work · Let's talk · Available for work ·
+              </textPath>
+            </text>
+          </svg>
+          <span class="hero__badge-star">*</span>
+        </div>
         <Image
           src={portraitHero}
           alt={`Portrait of ${site.name}, graphic designer`}
@@ -63,14 +90,57 @@ const services = [
     </ul>
   </section>
 
-  <section class="container" data-reveal>
+  <section class="container stackwrap" data-reveal>
     <div class="work__head">
       <h2>Selected work</h2>
       <p><a href="/work/">See all work →</a></p>
     </div>
-    <div class="grid">
-      {featured.map((p) => <ProjectCard project={p} />)}
+    <div class="stack">
+      {
+        stack.map((p, i) => (
+          <article class="stack__card" style={`--i:${i}`}>
+            <div class="stack__info">
+              <span class="stack__num">{String(i + 1).padStart(2, '0')}</span>
+              <p class="stack__meta">
+                {p.data.category} · {p.data.year}
+              </p>
+              <h3 class="stack__title">
+                <a href={`/work/${p.id}/`}>{p.data.title}</a>
+              </h3>
+              <a class="stack__link" href={`/work/${p.id}/`}>
+                View project →
+              </a>
+            </div>
+            <a class="stack__media" href={`/work/${p.id}/`} tabindex="-1" aria-hidden="true">
+              <Image src={p.data.cover} alt="" width={1200} loading="lazy" />
+            </a>
+          </article>
+        ))
+      }
     </div>
+    <div class="grid grid--rest">
+      {featured.slice(3).map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <section class="container tools" data-reveal>
+    <p class="tools__label">Tools I work with</p>
+    <ul class="tools__list">
+      {
+        tools.map((t) => (
+          <li class="tools__item">
+            <img
+              src={`https://cdn.simpleicons.org/${t.slug}/f2f1ee`}
+              alt={t.label}
+              width="28"
+              height="28"
+              loading="lazy"
+            />
+            <span>{t.label}</span>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 
   <section class="cta" data-reveal>
@@ -114,6 +184,8 @@ const services = [
     align-self: flex-start;
     position: relative;
     z-index: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
   }
 
   .hero__word--front {
@@ -142,6 +214,51 @@ const services = [
   .hero__portrait :global(img) {
     position: relative;
     display: block;
+  }
+
+  /* rotating availability badge overlapping the portrait corner */
+  .hero__badge {
+    position: absolute;
+    top: -2.4rem;
+    right: -2.4rem;
+    width: clamp(6rem, 10vw, 8.5rem);
+    aspect-ratio: 1;
+    z-index: 4;
+  }
+
+  .hero__badge-ring {
+    width: 100%;
+    height: 100%;
+    animation: badge-spin 16s linear infinite;
+  }
+
+  .hero__badge-bg {
+    fill: var(--accent);
+  }
+
+  .hero__badge-text {
+    fill: var(--accent-ink);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 8.2px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .hero__badge-star {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--accent-ink);
+  }
+
+  @keyframes badge-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .hero__under {
@@ -188,6 +305,10 @@ const services = [
     .hero__portrait {
       width: min(70vw, 22rem);
       align-self: flex-end;
+    }
+
+    .hero__badge {
+      right: -1rem;
     }
   }
 
@@ -266,22 +387,133 @@ const services = [
     border: 1px solid var(--line);
   }
 
+  /* selected work: stacked deck with depth */
+  .stackwrap {
+    padding-block: var(--space-2) var(--space-4);
+  }
+
   .work__head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: var(--space-2);
+    margin-bottom: var(--space-3);
   }
 
   .work__head h2 {
     font-size: clamp(2rem, 5vw, 3.2rem);
   }
 
-  .grid {
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .stack__card {
+    position: sticky;
+    top: calc(4.2rem + var(--i) * 1.6rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--space-3);
+    min-height: 22rem;
+  }
+
+  .stack__num {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .stack__meta {
+    color: var(--muted);
+    margin: var(--space-2) 0 0;
+  }
+
+  .stack__title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0.3rem 0 var(--space-2);
+  }
+
+  .stack__title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .stack__title a:hover {
+    color: var(--accent);
+  }
+
+  .stack__link {
+    font-weight: 600;
+  }
+
+  .stack__media {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .stack__media :global(img) {
+    transition: transform 0.5s ease;
+  }
+
+  .stack__card:hover .stack__media :global(img) {
+    transform: scale(1.04);
+  }
+
+  .grid--rest {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: var(--space-3);
-    margin-block: var(--space-3) var(--space-4);
+    margin-top: var(--space-3);
+  }
+
+  @media (max-width: 56rem) {
+    .stack__card {
+      grid-template-columns: 1fr;
+      position: static;
+      min-height: 0;
+    }
+  }
+
+  .tools {
+    padding-block: var(--space-2) var(--space-4);
+  }
+
+  .tools__label {
+    color: var(--muted);
+    margin: 0 0 var(--space-2);
+  }
+
+  .tools__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tools__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid var(--line);
+    padding: 0.5rem 1rem;
+  }
+
+  .tools__item span {
+    color: var(--muted);
   }
 
   .cta {

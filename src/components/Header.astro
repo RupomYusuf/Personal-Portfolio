@@ -27,27 +27,27 @@ const current = Astro.url.pathname;
 </header>
 
 <style>
+  /* solid accent band, like a printed spine */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgb(11 11 14 / 0.82);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    background: var(--accent);
+    border-bottom: 1px solid var(--accent-ink);
   }
 
   .site-header__inner {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding-block: var(--space-2);
+    padding-block: 0.7rem;
   }
 
   .site-header__brand {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.35rem;
-    color: var(--ink);
+    color: var(--accent-ink);
     text-decoration: none;
   }
 
@@ -57,16 +57,20 @@ const current = Astro.url.pathname;
   }
 
   nav a {
-    color: var(--muted);
+    color: var(--accent-ink);
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-weight: 600;
   }
 
   nav a:hover {
-    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 
   nav a[aria-current='page'] {
-    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 </style>
