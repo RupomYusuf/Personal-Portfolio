@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import WipBadge from './WipBadge.astro';
+
+const { project } = Astro.props;
+const { title, category, year, cover, coverAlt, status } = project.data;
+---
+
+<a href={`/work/${project.id}/`} class="card" data-category={category}>
+  <div class="card__media">
+    <Image src={cover} alt={coverAlt} width={1200} loading="lazy" />
+  </div>
+  <div class="card__meta">
+    <h3 class="card__title">{title}</h3>
+    <p class="card__info">{category} · {year}</p>
+    {status === 'wip' && <WipBadge />}
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card__media {
+    overflow: hidden;
+  }
+
+  .card__media :global(img) {
+    transition: transform 0.5s ease;
+  }
+
+  .card:hover .card__media :global(img) {
+    transform: scale(1.04);
+  }
+
+  .card__title {
+    margin: var(--space-2) 0 0;
+    font-size: 1.3rem;
+    display: inline;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease;
+  }
+
+  .card:hover .card__title {
+    background-size: 100% 2px;
+  }
+
+  .card__info {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+  }
+</style>
