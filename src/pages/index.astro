@@ -5,40 +5,35 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getProjectsSorted, getFeatured } from '../lib/projects';
 import { site } from '../config';
 import portraitHero from '../assets/portrait-hero.png';
-import imgIdentity from '../assets/projects/leafiesta-logo/cover.jpg';
-import imgIllustration from '../assets/projects/rose-lady/cover.jpg';
-import imgPrint from '../assets/projects/pizza-flyer/cover.jpg';
-import imgSocial from '../assets/projects/this-city-is-ours/cover.jpg';
+import imgRose from '../assets/projects/rose-lady/cover.jpg';
+import imgLeaf from '../assets/projects/leafiesta-logo/cover.jpg';
+import imgPizza from '../assets/projects/pizza-flyer/cover.jpg';
+import imgCity from '../assets/projects/this-city-is-ours/cover.jpg';
 
 const featured = await getFeatured(site.featuredCount);
 const projectCount = (await getProjectsSorted()).length;
 
+const roles = [
+  'Brand Identity Designer',
+  'Illustration & Character Artist',
+  'Print & Flyer Designer',
+];
+
 const services = [
-  { name: 'Logo & Brand Identity', img: imgIdentity, alt: 'Leafiesta logo design' },
-  { name: 'Character & Illustration', img: imgIllustration, alt: 'Rose Lady illustration' },
-  { name: 'Print & Flyer Design', img: imgPrint, alt: 'Pizza Friday flyer' },
-  { name: 'Poster & Social Graphics', img: imgSocial, alt: 'This City Is Ours poster art' },
+  { name: 'Logo & Brand Identity', img: imgLeaf, alt: 'Leafiesta logo design' },
+  { name: 'Character & Illustration', img: imgRose, alt: 'Rose Lady illustration' },
+  { name: 'Print & Flyer Design', img: imgPizza, alt: 'Pizza Friday flyer' },
+  { name: 'Poster & Social Graphics', img: imgCity, alt: 'This City Is Ours poster art' },
 ];
 ---
 
-<BaseLayout title={site.name} description={site.intro} ogImage={imgIllustration.src}>
+<BaseLayout title={site.name} description={site.intro} ogImage={imgRose.src}>
   <section class="hero">
-    <div class="glow hero__glow" aria-hidden="true"></div>
-    <div class="container hero__grid">
-      <div>
-        <p class="hero__eyebrow">
-          {site.availability}
-        </p>
-        <h1>
-          Design with personality, <span>precision</span> and
-          {site.yearsExperience} years of practice.
-        </h1>
-        <p class="hero__lead">
-          Brand identity, illustration and print by {site.name},
-          {site.fiverr.level}.
-        </p>
-        <a class="hero__cta" href="/contact/">Get in touch</a>
-      </div>
+    <div class="hero__stage">
+      <p class="hero__name" aria-label={site.name}>
+        <span aria-hidden="true">Rupom</span>
+        <span class="hero__name-second" aria-hidden="true">Morol</span>
+      </p>
       <div class="hero__portrait">
         <Image
           src={portraitHero}
@@ -47,25 +42,44 @@ const services = [
           priority
         />
       </div>
+      <div class="hero__aside">
+        <p class="hero__iam">I am {site.name}!</p>
+        <p class="hero__blurb">{site.intro}</p>
+        <p class="hero__arrow" aria-hidden="true">↘</p>
+      </div>
+      <ul class="hero__roles">
+        {
+          roles.map((r, i) => (
+            <li>
+              <span class="hero__role-num">({String(i + 1).padStart(2, '0')})</span>
+              <span class="hero__role-name">{r}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
-  <section class="container" data-reveal>
+  <section class="container statement" data-reveal>
+    <p class="pill">About me</p>
+    <h2 class="statement__text">
+      As a graphic designer, I've spent {site.yearsExperience} years helping
+      brands <span>find their visual voice</span>, from logos to full print
+      systems, and I'd love to do the same for yours.
+    </h2>
     <div class="stats">
-      <div class="stats__item">
-        <strong>{site.yearsExperience}+</strong><span>Years of experience</span>
-      </div>
-      <div class="stats__item">
-        <strong>{projectCount}</strong><span>Projects in this portfolio</span>
-      </div>
-      <div class="stats__item">
-        <strong>L2</strong><span>Fiverr Level 2 Seller</span>
-      </div>
+      <div class="stats__item"><strong>{site.yearsExperience}+</strong><span>Years of experience</span></div>
+      <div class="stats__item"><strong>{projectCount}</strong><span>Projects in this portfolio</span></div>
+      <div class="stats__item"><strong>L2</strong><span>Fiverr Level 2 Seller</span></div>
+      <div class="stats__item"><strong>100%</strong><span>Original, hand-crafted work</span></div>
     </div>
   </section>
 
   <section class="container services" data-reveal>
-    <h2 class="section-title">What I do</h2>
+    <div class="work__head">
+      <h2 class="section-title">What I do</h2>
+      <a class="work__all" href="/work/">See all work →</a>
+    </div>
     <div class="services__grid">
       {
         services.map((s) => (
@@ -88,12 +102,37 @@ const services = [
     </div>
   </section>
 
-  <section class="container" data-reveal>
-    <div class="cta">
-      <div class="cta__inner">
-        <h2>Have work that needs a designer?</h2>
+  <section class="container contact-cta" id="contact" data-reveal>
+    <div class="cta__form">
+      <h2 class="cta__title">Ready to start your project?</h2>
+      <form
+        name="contact"
+        method="POST"
+        action="/thanks/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p hidden>
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+        <div class="cta__row">
+          <label class="sr-only" for="cta-email">Email</label>
+          <input
+            id="cta-email"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          />
+          <button type="submit" aria-label="Send">→</button>
+        </div>
+      </form>
+      <p class="cta__alt">
+        Or write to me directly:
         <a href={`mailto:${site.email}`}>{site.email}</a>
-      </div>
+      </p>
     </div>
   </section>
 </BaseLayout>
@@ -101,177 +140,222 @@ const services = [
 <style>
   .hero {
     position: relative;
-    padding-block: var(--space-4) var(--space-4);
+    overflow: clip;
   }
 
-  .hero__glow {
-    opacity: 1;
-    inset: -30% 20% auto auto;
-    width: 44rem;
-    height: 38rem;
-  }
-
-  .hero__grid {
+  .hero__stage {
     position: relative;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: var(--space-3);
-    align-items: stretch;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: var(--space-2) var(--space-2) var(--space-3);
+    min-height: calc(100vh - 4.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
-  .hero__eyebrow {
-    display: inline-flex;
+  /* the giant pixel name, glowing behind the portrait */
+  .hero__name {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    background: rgb(124 107 255 / 0.16);
-    border: 1px solid rgb(124 107 255 / 0.4);
-    color: #cfc9ff;
-    border-radius: 999px;
-    padding: 0.35rem 1rem;
-    font-size: 0.9rem;
-    margin: 0 0 1.4rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(4rem, 17vw, 15rem);
+    line-height: 0.82;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    filter: blur(1.5px);
+    pointer-events: none;
   }
 
-  .hero__eyebrow::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
+  .hero__name span {
+    background: linear-gradient(180deg, #ffc27a 8%, var(--accent) 55%, rgb(232 121 43 / 0.15) 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  h1 {
-    font-size: clamp(2.6rem, 6vw, 4.8rem);
-    margin: 0 0 1.2rem;
-  }
-
-  h1 span {
-    color: #8f7dff;
-  }
-
-  .hero__lead {
-    color: var(--muted);
-    font-size: 1.15rem;
-    max-width: 30rem;
-    margin: 0 0 1.8rem;
-  }
-
-  .hero__cta {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-weight: 600;
-    padding: 0.85rem 1.8rem;
-    border-radius: 999px;
-    transition: transform 0.2s ease;
-  }
-
-  .hero__cta:hover {
-    transform: translateY(-2px);
-  }
-
-  .hero__cta:active {
-    transform: scale(0.98);
+  .hero__name-second {
+    margin-top: -0.12em;
   }
 
   .hero__portrait {
     position: relative;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    display: flex;
-    align-items: end;
-    justify-content: center;
+    z-index: 1;
+    width: clamp(16rem, 38vw, 30rem);
+    margin-inline: auto;
+    filter: drop-shadow(0 2.2rem 3rem rgb(16 16 26 / 0.3));
   }
 
-  .hero__portrait img {
-    width: 100%;
-    display: block;
-    margin-bottom: -2px;
+  .hero__aside {
+    position: absolute;
+    right: var(--space-2);
+    top: 24%;
+    width: 15rem;
+    text-align: right;
+  }
+
+  .hero__iam {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.45rem;
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+  }
+
+  .hero__blurb {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 1.2rem;
+  }
+
+  .hero__arrow {
+    font-size: 2rem;
+    color: var(--muted);
+    margin: 0;
+    animation: nudge 2.4s ease-in-out infinite;
+  }
+
+  @keyframes nudge {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(0.4rem, 0.4rem); }
+  }
+
+  .hero__roles {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    margin: -1.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: max-content;
+  }
+
+  .hero__roles li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .hero__role-num {
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .hero__role-name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    color: var(--ink);
+    text-shadow: 0 1px 14px rgb(244 244 246 / 0.9);
+  }
+
+  .hero__role-name:first-letter {
+    text-transform: uppercase;
   }
 
   @media (max-width: 56rem) {
-    .hero__grid {
-      grid-template-columns: 1fr;
+    .hero__stage {
+      min-height: 0;
+      padding-top: var(--space-3);
+    }
+
+    .hero__name {
+      position: static;
+      transform: none;
+      width: 100%;
+      filter: blur(1px);
+      margin-bottom: -0.4em;
     }
 
     .hero__portrait {
-      max-width: 22rem;
+      width: min(72vw, 20rem);
     }
+
+    .hero__aside {
+      position: static;
+      width: auto;
+      text-align: left;
+      margin-top: 1.2rem;
+    }
+
+    .hero__arrow {
+      display: none;
+    }
+
+    .hero__roles {
+      margin-top: 1.4rem;
+    }
+  }
+
+  .statement {
+    padding-block: var(--space-4);
+  }
+
+  .pill {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 var(--space-2);
+  }
+
+  .statement__text {
+    font-size: clamp(1.5rem, 3.6vw, 2.6rem);
+    font-weight: 600;
+    max-width: 58rem;
+    margin: 0 0 var(--space-3);
+  }
+
+  .statement__text span {
+    color: var(--accent);
   }
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-2);
-    margin-block: var(--space-2) var(--space-4);
-  }
-
-  .stats__item {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.6rem;
   }
 
   .stats__item strong {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: 600;
     display: block;
-    color: #8f7dff;
+    color: var(--accent);
   }
 
   .stats__item span {
     color: var(--muted);
+    font-size: 0.95rem;
   }
 
   @media (max-width: 48rem) {
     .stats {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   .section-title {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
     margin: 0 0 var(--space-3);
   }
 
   .services {
-    padding-block: var(--space-2) var(--space-4);
-  }
-
-  .services__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-    gap: var(--space-2);
-  }
-
-  .services__card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition:
-      transform 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .services__card:hover {
-    transform: translateY(-4px);
-    border-color: rgb(124 107 255 / 0.6);
-  }
-
-  .services__card img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-
-  .services__card h3 {
-    font-size: 1.1rem;
-    margin: 0;
-    padding: 1rem 1.2rem;
+    padding-block: var(--space-2) var(--space-3);
   }
 
   .work__head {
@@ -288,41 +372,118 @@ const services = [
   }
 
   .work__all:hover {
-    color: var(--ink);
+    color: var(--accent);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-2);
+  }
+
+  .services__card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .services__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1.2rem 2.4rem rgb(16 16 26 / 0.1);
+  }
+
+  .services__card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .services__card h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    padding: 1rem 1.2rem;
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: var(--space-2);
-    margin-bottom: var(--space-4);
   }
 
-  .cta {
-    background: linear-gradient(135deg, #7c6bff, #b96bff 55%, #ff7ad8);
-    color: var(--accent-ink);
+  .contact-cta {
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  .cta__form {
+    background: var(--navy);
+    color: var(--navy-ink);
     border-radius: var(--radius-lg);
-    margin-bottom: var(--space-4);
-  }
-
-  .cta__inner {
     padding: var(--space-4) var(--space-3);
+    text-align: center;
+  }
+
+  .cta__title {
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
+    margin: 0 0 var(--space-3);
+    color: var(--navy-ink);
+  }
+
+  .cta__row {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    justify-content: space-between;
-    align-items: center;
+    gap: 0.6rem;
+    max-width: 30rem;
+    margin-inline: auto;
   }
 
-  .cta h2 {
-    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-    margin: 0;
-    color: var(--accent-ink);
+  .cta__row input {
+    flex: 1;
+    font: inherit;
+    padding: 0.8rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    background: rgb(255 255 255 / 0.08);
+    color: var(--navy-ink);
   }
 
-  .cta a {
+  .cta__row input::placeholder {
+    color: rgb(244 244 246 / 0.55);
+  }
+
+  .cta__row button {
+    font: inherit;
+    font-weight: 700;
+    width: 3.2rem;
+    border-radius: 999px;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .cta__row button:hover {
+    transform: translateY(-2px);
+  }
+
+  .cta__alt {
+    margin: var(--space-2) 0 0;
+    color: rgb(244 244 246 / 0.7);
+  }
+
+  .cta__alt a {
+    color: var(--accent-2);
     font-weight: 600;
-    color: var(--accent-ink);
-    font-size: 1.1rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
   }
 </style>

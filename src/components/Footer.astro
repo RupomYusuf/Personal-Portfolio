@@ -8,11 +8,25 @@ const socialLinks = [
 ---
 
 <footer class="site-footer">
+  <div class="site-footer__marquee" aria-hidden="true">
+    <div class="site-footer__track">
+      {
+        Array.from({ length: 4 }).map(() => (
+          <span>
+            Contact me<span class="site-footer__dot"> · </span>Contact me
+            <span class="site-footer__dot"> · </span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
   <div class="container site-footer__inner">
     <div>
       <p class="site-footer__brand">{site.name}</p>
+      <p>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
       <p>© {year} {site.name}, {site.role}</p>
-      <p class="site-footer__availability">{site.availability}</p>
     </div>
     {
       socialLinks.length > 0 && (
@@ -32,9 +46,42 @@ const socialLinks = [
 
 <style>
   .site-footer {
-    border-top: 1px solid var(--line);
-    padding-block: var(--space-3) var(--space-4);
-    color: var(--muted);
+    background: var(--navy);
+    color: var(--navy-ink);
+    padding-top: var(--space-3);
+  }
+
+  .site-footer__marquee {
+    overflow: clip;
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+    padding-block: 0.6rem;
+  }
+
+  .site-footer__track {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: footer-slide 26s linear infinite;
+  }
+
+  .site-footer__track span {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: rgb(244 244 246 / 0.95);
+  }
+
+  .site-footer__dot {
+    color: var(--accent);
+    padding-inline: 1.2rem;
+  }
+
+  @keyframes footer-slide {
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   .site-footer__inner {
@@ -43,22 +90,23 @@ const socialLinks = [
     gap: var(--space-3);
     justify-content: space-between;
     align-items: start;
+    padding-block: var(--space-3);
   }
 
   .site-footer__brand {
     font-weight: 600;
-    font-size: 1.4rem;
-    color: var(--ink);
+    font-size: 1.3rem;
+    color: var(--navy-ink);
     margin: 0 0 var(--space-1);
   }
 
   .site-footer p {
     margin: 0.15rem 0;
+    color: rgb(244 244 246 / 0.65);
   }
 
-  .site-footer__availability {
-    color: var(--accent);
-    font-weight: 600;
+  .site-footer__inner a:hover {
+    color: var(--accent-2);
   }
 
   .site-footer__socials {
@@ -71,10 +119,10 @@ const socialLinks = [
   }
 
   .site-footer__socials a {
-    color: var(--muted);
+    color: var(--navy-ink);
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
-    border: 1px solid var(--line);
+    border: 1px solid rgb(255 255 255 / 0.25);
     display: inline-block;
     transition:
       color 0.2s ease,
@@ -82,7 +130,7 @@ const socialLinks = [
   }
 
   .site-footer__socials a:hover {
-    color: var(--ink);
-    border-color: var(--accent);
+    color: var(--accent-2);
+    border-color: var(--accent-2);
   }
 </style>

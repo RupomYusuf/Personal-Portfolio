@@ -1,22 +1,23 @@
 /* Rupom Morol — portfolio
-   Soft dark premium: ink-navy ground, violet/pink aurora glows,
-   rounded glass surfaces, Outfit type. One accent family, one radius scale. */
+   Light silver editorial: portrait-centric hero, pixel-gradient name,
+   italic serif accents, navy footer. Amber accent, one radius scale. */
 
 :root {
-  --bg: #07070d;
-  --surface: rgb(255 255 255 / 0.05);
-  --surface-solid: #171a30;
-  --line: rgb(255 255 255 / 0.09);
-  --line-strong: rgb(255 255 255 / 0.16);
-  --ink: #f4f2ff;
-  --muted: #b6b2e0;
-  --accent: #8b78ff;
-  --accent-2: #ff7ad8;
-  --accent-ink: #0e1020; /* text on accent */
-  --font-display: 'Outfit Variable', system-ui, sans-serif;
+  --bg: #e9e9ee;
+  --bg-2: #f4f4f6;
+  --surface: #ffffff;
+  --ink: #16161a;
+  --muted: #5c5c66;
+  --accent: #e8792b;
+  --accent-2: #ffb15e;
+  --navy: #101828;
+  --navy-ink: #f4f4f6;
+  --line: rgb(16 16 26 / 0.12);
+  --font-display: 'Silkscreen', monospace;
+  --font-serif: 'Playfair Display', Georgia, serif;
   --font-body: 'Outfit Variable', system-ui, sans-serif;
-  --radius: 20px;
-  --radius-lg: 28px;
+  --radius: 16px;
+  --radius-lg: 24px;
   --container: 74rem;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -34,10 +35,8 @@
 body {
   margin: 0;
   background:
-    radial-gradient(ellipse 90% 55% at 75% -10%, rgb(124 107 255 / 0.22), transparent),
-    radial-gradient(ellipse 70% 45% at 5% 115%, rgb(255 122 216 / 0.14), transparent),
-    #07070d;
-  background-attachment: fixed;
+    radial-gradient(ellipse 70% 50% at 50% 0%, #fdfdfe, transparent),
+    linear-gradient(180deg, #f4f4f6, #e9e9ee);
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.55;
@@ -66,7 +65,7 @@ img {
 
 ::selection {
   background: var(--accent);
-  color: var(--accent-ink);
+  color: #fff;
 }
 
 .container {
@@ -97,18 +96,6 @@ img {
   }
 }
 
-/* aurora glow: decorative, per-section, non-interactive */
-.glow {
-  position: absolute;
-  pointer-events: none;
-  filter: blur(28px);
-  opacity: 0.9;
-  background:
-    radial-gradient(circle at 30% 40%, rgb(124 107 255 / 0.5), transparent 60%),
-    radial-gradient(circle at 70% 60%, rgb(255 122 216 / 0.3), transparent 55%);
-}
-
-/* Scroll reveal: elements with [data-reveal] start hidden, .revealed shows them */
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     opacity: 0;
@@ -133,18 +120,18 @@ img {
   outline-offset: 3px;
 }
 
-/* Lightbox: native dialog, dark glass */
+/* Lightbox */
 .lightbox {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: rgb(14 16 32 / 0.96);
+  background: var(--surface);
   color: var(--ink);
   padding: var(--space-3);
   max-width: min(92vw, 72rem);
 }
 
 .lightbox::backdrop {
-  background: rgb(6 7 18 / 0.8);
+  background: rgb(16 24 40 / 0.7);
 }
 
 .lightbox__img {
@@ -164,12 +151,12 @@ img {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  background: rgb(255 255 255 / 0.08);
-  border: 1px solid var(--line);
+  background: var(--ink);
+  border: 0;
   border-radius: 999px;
   width: 2.5rem;
   height: 2.5rem;
-  color: var(--ink);
+  color: #fff;
   cursor: pointer;
 }
 
@@ -177,12 +164,12 @@ img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgb(255 255 255 / 0.08);
-  border: 1px solid var(--line);
+  background: var(--ink);
+  border: 0;
   border-radius: 999px;
   width: 2.6rem;
   height: 2.6rem;
-  color: var(--ink);
+  color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
 }
