@@ -1,0 +1,139 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WipBadge from '../../components/WipBadge.astro';
+import { getProjectsSorted } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<'projects'> };
+const { Content } = await render(entry);
+const d = entry.data;
+const isWip = d.status === 'wip';
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.coverAlt}
+  ogImage={d.cover.src}
+  noindex={isWip}
+>
+  <article class="container project">
+    <p class="project__crumb">{d.category} · {d.year}{d.client ? ` · ${d.client}` : ''}</p>
+    <h1>{d.title}</h1>
+    {isWip && <WipBadge label="Case study in progress" />}
+
+    <div class="project__cover">
+      <Image src={d.cover} alt={d.coverAlt} width={1200} priority />
+    </div>
+
+    <div class="project__body">
+      <Content />
+    </div>
+
+    {d.images && (
+      <div class="project__gallery" data-gallery data-reveal>
+        {
+          d.images.map((img) => (
+            <button
+              type="button"
+              class="project__frame"
+              data-lightbox-trigger
+              data-full={img.src.src}
+              data-alt={img.alt}
+            >
+              <Image src={img.src} alt={img.alt} width={1200} loading="lazy" />
+            </button>
+          ))
+        }
+      </div>
+    )}
+
+    {d.tags && (
+      <p class="project__tags">
+        {d.tags.map((t) => <span class="tag">{t}</span>)}
+      </p>
+    )}
+
+    {d.testimonial && (
+      <blockquote class="project__testimonial">
+        <p>“{d.testimonial.quote}”</p>
+        <cite>{d.testimonial.attribution}</cite>
+      </blockquote>
+    )}
+
+    <p class="project__back"><a href="/work/">← All work</a></p>
+  </article>
+</BaseLayout>
+
+<script>
+  import { initLightbox } from '../../scripts/lightbox';
+  initLightbox();
+</script>
+
+<style>
+  .project {
+    padding-bottom: var(--space-5);
+  }
+
+  .project__crumb {
+    color: var(--muted);
+    margin-top: var(--space-3);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    margin: 0 0 var(--space-2);
+  }
+
+  .project__cover {
+    margin-block: var(--space-3);
+  }
+
+  .project__body {
+    max-width: 42rem;
+  }
+
+  .project__gallery {
+    display: grid;
+    gap: var(--space-2);
+    margin-block: var(--space-3);
+  }
+
+  .project__frame {
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+
+  .tag {
+    display: inline-block;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+    margin-right: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .project__testimonial {
+    border-left: 3px solid var(--accent);
+    margin: var(--space-3) 0;
+    padding-left: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+  }
+
+  .project__testimonial cite {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-top: var(--space-1);
+  }
+</style>
