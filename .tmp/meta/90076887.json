@@ -1,0 +1,33 @@
+{
+ "id": "90076887",
+ "name": "Depict Joker",
+ "slug": "Depict-Joker",
+ "description": "",
+ "publishedOn": 1577898019,
+ "fields": null,
+ "tags": [],
+ "tools": [
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 1,
+  "views": 10
+ },
+ "colors": {
+  "r": 0,
+  "g": 114,
+  "b": 255
+ },
+ "canvasWidth": 1280,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/809c9d90076887.Y3JvcCw4NzAsNjgxLDExMiww.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/99daa690076887.5e0cd02352c01.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/90076887/Depict-Joker"
+}

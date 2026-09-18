@@ -45,7 +45,7 @@ const featured = await getFeatured(site.featuredCount);
     grid-template-columns: 1.15fr 0.85fr;
     align-items: end;
     gap: var(--space-3);
-    padding-block: var(--space-4);
+    padding-block: var(--space-5) var(--space-4);
     overflow-x: clip;
   }
 
@@ -56,19 +56,20 @@ const featured = await getFeatured(site.featuredCount);
   }
 
   .hero__title {
-    font-size: clamp(3.5rem, 11vw, 8rem);
+    font-size: clamp(3.5rem, 12vw, 9rem);
     margin: 0 0 var(--space-2);
-    letter-spacing: -0.02em;
     position: relative;
     z-index: 2;
     /* type breaks the grid and runs over the portrait edge */
     width: 175%;
     max-width: none;
+    text-transform: uppercase;
   }
 
   .hero__role {
     font-size: 1.3rem;
     max-width: 40rem;
+    color: var(--ink);
   }
 
   .hero__trust {
@@ -76,7 +77,21 @@ const featured = await getFeatured(site.featuredCount);
   }
 
   .hero__cta a {
+    display: inline-block;
     font-weight: 600;
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 0.7rem 1.6rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .hero__cta a:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero__cta a:active {
+    transform: scale(0.98);
   }
 
   .hero__photo {
@@ -102,6 +117,7 @@ const featured = await getFeatured(site.featuredCount);
   @media (max-width: 56rem) {
     .hero {
       grid-template-columns: 1fr;
+      padding-block: var(--space-3) var(--space-4);
     }
 
     .hero__title {

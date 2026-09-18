@@ -1,0 +1,80 @@
+{
+ "id": "99197713",
+ "name": "Fashion Flyer",
+ "slug": "Fashion-Flyer",
+ "description": "Fashion Flyer Design",
+ "publishedOn": 1592597974,
+ "fields": null,
+ "tags": [
+  {
+   "id": 976003,
+   "title": "corporate"
+  },
+  {
+   "id": 972003,
+   "title": "cover"
+  },
+  {
+   "id": 9763319,
+   "title": "design"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 1473291,
+   "title": "Media Design"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 988707,
+   "title": "social"
+  },
+  {
+   "id": 972413,
+   "title": "stationary"
+  }
+ ],
+ "tools": [],
+ "stats": {
+  "appr": 0,
+  "views": 5
+ },
+ "colors": {
+  "r": 239,
+  "g": 239,
+  "b": 239
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/b7ed3099197713.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/368c5e99197713.5eed1dd51c84f.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/d27c6499197713.5eed1dd51c21b.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/b4702399197713.5eed1dd51ba71.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99197713/Fashion-Flyer"
+}

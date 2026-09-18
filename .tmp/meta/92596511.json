@@ -1,0 +1,42 @@
+{
+ "id": "92596511",
+ "name": "Foxer logo",
+ "slug": "Foxer-logo",
+ "description": "",
+ "publishedOn": 1582226761,
+ "fields": null,
+ "tags": [],
+ "tools": [
+  "Adobe Photoshop",
+  "Adobe Illustrator"
+ ],
+ "stats": {
+  "appr": 2,
+  "views": 10
+ },
+ "colors": {
+  "r": 128,
+  "g": 123,
+  "b": 123
+ },
+ "canvasWidth": 1284,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/87b85c92596511.Y3JvcCwxMDg0LDg0NywwLDE1Mg.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/0d281292596511.5e4edd48bb611.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/679e3892596511.5e4edd48bb125.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/2dac3b92596511.5e4edd48bbabf.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/92596511/Foxer-logo"
+}

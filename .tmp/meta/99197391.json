@@ -1,0 +1,83 @@
+{
+ "id": "99197391",
+ "name": "Quarantine flyer",
+ "slug": "Quarantine-flyer",
+ "description": "Stay at home and cook",
+ "publishedOn": 1592597635,
+ "fields": null,
+ "tags": [
+  {
+   "id": 976003,
+   "title": "corporate"
+  },
+  {
+   "id": 972003,
+   "title": "cover"
+  },
+  {
+   "id": 9763319,
+   "title": "design"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 1473291,
+   "title": "Media Design"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 988707,
+   "title": "social"
+  },
+  {
+   "id": 972413,
+   "title": "stationary"
+  }
+ ],
+ "tools": [
+  "Adobe Illustrator",
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 0,
+  "views": 7
+ },
+ "colors": {
+  "r": 239,
+  "g": 239,
+  "b": 240
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/2af4aa99197391.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/f271e199197391.5eed1c7f96a84.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/7769f399197391.5eed1c7f961a5.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/bac2ea99197391.5eed1c7f95c6a.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99197391/Quarantine-flyer"
+}

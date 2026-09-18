@@ -1,0 +1,59 @@
+{
+ "id": "101096379",
+ "name": "Event Flyer",
+ "slug": "Event-Flyer",
+ "description": "",
+ "publishedOn": 1595356027,
+ "fields": null,
+ "tags": [
+  {
+   "id": 971511,
+   "title": "Event"
+  },
+  {
+   "id": 999693,
+   "title": "event flyer"
+  },
+  {
+   "id": 196831115,
+   "title": "facebook"
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 972215,
+   "title": "instagram"
+  },
+  {
+   "id": 190666515,
+   "title": "socialmedia design"
+  }
+ ],
+ "tools": [
+  "Adobe Illustrator",
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 0,
+  "views": 6
+ },
+ "colors": {
+  "r": 109,
+  "g": 154,
+  "b": 154
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/b6dfd3101096379.Y3JvcCwxOTIzLDE1MDQsMCwyMTQ.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/d7810b101096379.5f17337b19e47.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/101096379/Event-Flyer"
+}

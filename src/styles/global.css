@@ -1,43 +1,20 @@
-/* Self-hosted fonts (latin subsets, variable) — replaces the render-blocking
-   Google Fonts stylesheet. Source: fonts.google.com, Fraunces + Inter. */
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/fraunces-latin-var.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/fraunces-latin-var.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/inter-latin-var.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/inter-latin-var.woff2') format('woff2');
-}
+/* Rupom Morol — portfolio
+   Dark editorial system: off-black ground, ember accent, sharp corners.
+   One accent, one radius system (0), one theme. Fonts self-hosted via
+   @fontsource-variable packages (Bricolage Grotesque, Space Grotesk). */
 
 :root {
-  --bg: #ffffff;
-  --ink: #111318;
-  --muted: #5a6072;
-  --accent: #c9452c;
-  --line: #e6e4df;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --container: 68rem;
+  --bg: #0b0b0e;
+  --surface: #141419;
+  --surface-2: #1a1a21;
+  --ink: #f2f1ee;
+  --muted: #a3a3ad;
+  --accent: #ff5a36;
+  --accent-ink: #0b0b0e; /* text on accent */
+  --line: rgb(255 255 255 / 0.09);
+  --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --font-body: 'Space Grotesk Variable', system-ui, sans-serif;
+  --container: 72rem;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 2rem;
@@ -60,12 +37,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* film grain: fixed, non-interactive, never on scrolling containers */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
 }
 
 a {
@@ -84,8 +73,9 @@ img {
   display: block;
 }
 
-[hidden] {
-  display: none !important;
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .container {
@@ -126,21 +116,26 @@ img {
   }
 }
 
+[hidden] {
+  display: none !important;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
+/* Lightbox: native dialog, dark glass */
 .lightbox {
-  border: 0;
-  background: rgba(17, 19, 24, 0.94);
-  color: #fff;
+  border: 1px solid var(--line);
+  background: rgb(11 11 14 / 0.96);
+  color: var(--ink);
   padding: var(--space-3);
-  max-width: min(92vw, 68rem);
+  max-width: min(92vw, 72rem);
 }
 
 .lightbox::backdrop {
-  background: rgba(17, 19, 24, 0.7);
+  background: rgb(0 0 0 / 0.8);
 }
 
 .lightbox__img {
@@ -151,7 +146,7 @@ img {
 
 .lightbox__caption {
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--muted);
   margin: var(--space-1) 0 0;
 }
 
@@ -159,6 +154,11 @@ img {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .lightbox__nav {
@@ -168,13 +168,14 @@ img {
   font-size: 2rem;
   background: none;
   border: 0;
-  color: #fff;
+  color: var(--ink);
   cursor: pointer;
 }
 
 .lightbox__prev {
   left: 0.75rem;
 }
+
 .lightbox__next {
   right: 0.75rem;
 }

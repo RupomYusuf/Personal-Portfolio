@@ -2,11 +2,15 @@
 import { Image } from 'astro:assets';
 import WipBadge from './WipBadge.astro';
 
-const { project } = Astro.props;
+const { project, wide = false } = Astro.props;
 const { title, category, year, cover, coverAlt, status } = project.data;
 ---
 
-<a href={`/work/${project.id}/`} class="card" data-category={category}>
+<a
+  href={`/work/${project.id}/`}
+  class:list={['card', { 'card--wide': wide }]}
+  data-category={category}
+>
   <div class="card__media">
     <Image src={cover} alt={coverAlt} width={1200} loading="lazy" />
   </div>
@@ -26,6 +30,8 @@ const { title, category, year, cover, coverAlt, status } = project.data;
 
   .card__media {
     overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--surface);
   }
 
   .card__media :global(img) {
@@ -40,6 +46,7 @@ const { title, category, year, cover, coverAlt, status } = project.data;
     margin: var(--space-2) 0 0;
     font-size: 1.3rem;
     display: inline;
+    color: var(--ink);
     background-image: linear-gradient(var(--accent), var(--accent));
     background-repeat: no-repeat;
     background-position: 0 100%;

@@ -1,0 +1,75 @@
+{
+ "id": "99196501",
+ "name": "Corporate Design",
+ "slug": "Corporate-Design",
+ "description": "Corporate conference flyer design",
+ "publishedOn": 1592596597,
+ "fields": null,
+ "tags": [
+  {
+   "id": 976003,
+   "title": "corporate"
+  },
+  {
+   "id": 972003,
+   "title": "cover"
+  },
+  {
+   "id": 9763319,
+   "title": "design"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 1006739,
+   "title": "Flyer Design"
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 1187735,
+   "title": "Social Media Design"
+  },
+  {
+   "id": 972413,
+   "title": "stationary"
+  }
+ ],
+ "tools": [
+  "Adobe Illustrator",
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 1,
+  "views": 5
+ },
+ "colors": {
+  "r": 255,
+  "g": 202,
+  "b": 0
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/55199899196501.Y3JvcCwxMzgwLDEwODAsMTcsMA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/12bf8c99196501.5eed1874a424a.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99196501/Corporate-Design"
+}

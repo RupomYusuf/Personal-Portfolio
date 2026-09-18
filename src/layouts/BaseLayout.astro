@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/space-grotesk';
 import Seo from '../components/Seo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -19,6 +21,7 @@ const { title, description, ogImage, noindex } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0e" />
     <noscript>
       <style>
         [data-reveal] {
@@ -29,8 +32,6 @@ const { title, description, ogImage, noindex } = Astro.props;
     </noscript>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fraunces-latin-var.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-latin-var.woff2" />
     <Seo title={title} description={description} image={ogImage} noindex={noindex} />
   </head>
   <body>

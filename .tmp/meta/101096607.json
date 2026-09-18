@@ -1,0 +1,71 @@
+{
+ "id": "101096607",
+ "name": "Sale flyer",
+ "slug": "Sale-flyer",
+ "description": "",
+ "publishedOn": 1595356232,
+ "fields": null,
+ "tags": [
+  {
+   "id": 974869,
+   "title": "Clothing"
+  },
+  {
+   "id": 971511,
+   "title": "Event"
+  },
+  {
+   "id": 196831115,
+   "title": "facebook"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 972215,
+   "title": "instagram"
+  },
+  {
+   "id": 1003529,
+   "title": "sale"
+  },
+  {
+   "id": 1003903,
+   "title": "Shopping"
+  },
+  {
+   "id": 190666515,
+   "title": "socialmedia design"
+  }
+ ],
+ "tools": [
+  "Adobe Photoshop",
+  "Adobe Illustrator"
+ ],
+ "stats": {
+  "appr": 0,
+  "views": 3
+ },
+ "colors": {
+  "r": 108,
+  "g": 153,
+  "b": 154
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/76c6a4101096607.Y3JvcCwxOTIzLDE1MDQsMCwyMTQ.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/28419a101096607.5f1734483981e.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/7b0a36101096607.5f17344839f35.jpg"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/101096607/Sale-flyer"
+}

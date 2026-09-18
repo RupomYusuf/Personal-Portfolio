@@ -1,0 +1,54 @@
+{
+ "id": "93477463",
+ "name": "RED GIRL",
+ "slug": "RED-GIRL",
+ "description": "",
+ "publishedOn": 1583753465,
+ "fields": null,
+ "tags": [
+  {
+   "id": 6155813,
+   "title": "branding "
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 1274943,
+   "title": "ILLUSTRATION "
+  }
+ ],
+ "tools": [
+  "Behance Mobile"
+ ],
+ "stats": {
+  "appr": 3,
+  "views": 27
+ },
+ "colors": {
+  "r": 181,
+  "g": 181,
+  "b": 181
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/da379093477463.5e6628f84dfd9.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/34248b93477463.5e6628f8be382.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/844f7493477463.5e6628f8bdbec.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/08833793477463.5e6628f8bd666.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/93477463/RED-GIRL"
+}

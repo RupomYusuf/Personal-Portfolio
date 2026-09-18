@@ -1,0 +1,83 @@
+{
+ "id": "99226929",
+ "name": "Online store flyer",
+ "slug": "Online-store-flyer",
+ "description": "Online Store Flyer",
+ "publishedOn": 1592657349,
+ "fields": null,
+ "tags": [
+  {
+   "id": 976003,
+   "title": "corporate"
+  },
+  {
+   "id": 972003,
+   "title": "cover"
+  },
+  {
+   "id": 9763319,
+   "title": "design"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 1473291,
+   "title": "Media Design"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 988707,
+   "title": "social"
+  },
+  {
+   "id": 972413,
+   "title": "stationary"
+  }
+ ],
+ "tools": [
+  "Adobe Illustrator",
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 2,
+  "views": 10
+ },
+ "colors": {
+  "r": 239,
+  "g": 239,
+  "b": 239
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/60608499226929.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/6106f499226929.5eee05c47980f.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/2af37099226929.5eee05c479ff5.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/06e9e399226929.5eee05c4792c2.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99226929/Online-store-flyer"
+}

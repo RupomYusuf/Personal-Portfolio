@@ -1,0 +1,56 @@
+{
+ "id": "99196711",
+ "name": "Food flyer",
+ "slug": "Food-flyer",
+ "description": "Healthy food flyer design",
+ "publishedOn": 1592596783,
+ "fields": null,
+ "tags": [
+  {
+   "id": 980427,
+   "title": "banner"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 1006739,
+   "title": "Flyer Design"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 1019291,
+   "title": "restaurant design"
+  },
+  {
+   "id": 4565865,
+   "title": "restaurant flyer"
+  }
+ ],
+ "tools": [],
+ "stats": {
+  "appr": 1,
+  "views": 8
+ },
+ "colors": {
+  "r": 204,
+  "g": 248,
+  "b": 18
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/56adb399196711.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/98b9db99196711.5eed192f0c4cd.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99196711/Food-flyer"
+}

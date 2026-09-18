@@ -1,0 +1,71 @@
+{
+ "id": "101096205",
+ "name": "Restaurant Flyer",
+ "slug": "Restaurant-Flyer",
+ "description": "",
+ "publishedOn": 1595355842,
+ "fields": null,
+ "tags": [
+  {
+   "id": 975831,
+   "title": "creative"
+  },
+  {
+   "id": 196831115,
+   "title": "facebook"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 926647703,
+   "title": "flyer desihn"
+  },
+  {
+   "id": 978313,
+   "title": "graphics design"
+  },
+  {
+   "id": 972215,
+   "title": "instagram"
+  },
+  {
+   "id": 978785,
+   "title": "product"
+  },
+  {
+   "id": 1667183,
+   "title": "Restaurent"
+  },
+  {
+   "id": 190666515,
+   "title": "socialmedia design"
+  }
+ ],
+ "tools": [
+  "Adobe Photoshop",
+  "Adobe Illustrator"
+ ],
+ "stats": {
+  "appr": 1,
+  "views": 10
+ },
+ "colors": {
+  "r": 112,
+  "g": 151,
+  "b": 151
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/9d5a18101096205.Y3JvcCwxOTIzLDE1MDQsMCwyMTQ.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/4390f4101096205.5f1732c26e727.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/101096205/Restaurant-Flyer"
+}

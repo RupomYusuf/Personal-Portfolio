@@ -1,0 +1,83 @@
+{
+ "id": "99288165",
+ "name": "Pizza Flyer",
+ "slug": "Pizza-Flyer",
+ "description": "",
+ "publishedOn": 1592765239,
+ "fields": null,
+ "tags": [
+  {
+   "id": 972003,
+   "title": "cover"
+  },
+  {
+   "id": 9763319,
+   "title": "design"
+  },
+  {
+   "id": 971711,
+   "title": "flyer"
+  },
+  {
+   "id": 11589905,
+   "title": "graphic design "
+  },
+  {
+   "id": 975381,
+   "title": "graphics"
+  },
+  {
+   "id": 1473291,
+   "title": "Media Design"
+  },
+  {
+   "id": 971165,
+   "title": "poster"
+  },
+  {
+   "id": 972221,
+   "title": "restaurant"
+  },
+  {
+   "id": 988707,
+   "title": "social"
+  },
+  {
+   "id": 972413,
+   "title": "stationary"
+  }
+ ],
+ "tools": [
+  "Adobe Illustrator",
+  "Adobe Photoshop"
+ ],
+ "stats": {
+  "appr": 0,
+  "views": 3
+ },
+ "colors": {
+  "r": 239,
+  "g": 239,
+  "b": 240
+ },
+ "canvasWidth": 1400,
+ "images": [
+  {
+   "kind": "cover",
+   "url": "https://mir-s3-cdn-cf.behance.net/projects/original/e877c499288165.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/f938bd99288165.5eefaac86d2ee.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/7e61ba99288165.5eefaac86db8d.png"
+  },
+  {
+   "kind": "module",
+   "url": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/21c72199288165.5eefaac86ca21.png"
+  }
+ ],
+ "url": "https://www.behance.net/gallery/99288165/Pizza-Flyer"
+}

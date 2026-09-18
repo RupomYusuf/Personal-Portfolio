@@ -106,16 +106,33 @@ const socialLinks = [
     font: inherit;
     padding: 0.6rem;
     border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 0;
   }
 
   button {
     font: inherit;
     font-weight: 600;
     padding: 0.6rem 1.4rem;
-    background: var(--ink);
-    color: var(--bg);
+    background: var(--accent);
+    color: var(--accent-ink);
     border: 0;
     cursor: pointer;
     justify-self: start;
+    transition: transform 0.2s ease;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+  }
+
+  button:active {
+    transform: scale(0.98);
   }
 </style>
