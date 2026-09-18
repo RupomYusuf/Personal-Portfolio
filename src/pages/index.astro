@@ -4,11 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getProjectsSorted, getFeatured } from '../lib/projects';
 import { site } from '../config';
-import portraitHero from '../assets/portrait-hero.jpg';
-import imgIdentity from '../assets/projects/leafiesta-logo/cover.jpg';
-import imgIllustration from '../assets/projects/rose-lady/cover.jpg';
-import imgPrint from '../assets/projects/pizza-flyer/cover.jpg';
-import imgSocial from '../assets/projects/this-city-is-ours/cover.jpg';
+import portraitHero from '../assets/portrait-hero.png';
+import imgIdentity from '../assets/chips/leafiesta-logo.png';
+import imgIllustration from '../assets/chips/rose-lady.png';
+import imgPrint from '../assets/chips/pizza-flyer.png';
+import imgSocial from '../assets/chips/this-city-is-ours.png';
 
 const featured = await getFeatured(site.featuredCount);
 const stack = featured.slice(0, 3);
@@ -384,7 +384,6 @@ const tools = [
     width: 7rem;
     height: auto;
     object-fit: cover;
-    border: 1px solid var(--line);
   }
 
   /* selected work: stacked deck with depth */
