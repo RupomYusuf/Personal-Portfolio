@@ -1,8 +1,70 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getFeatured } from '../lib/projects';
 import { site } from '../config';
+
+const featured = await getFeatured(site.featuredCount);
 ---
 
 <BaseLayout title={site.name} description={site.intro}>
-  <h1>{site.name}</h1>
+  <section class="container hero">
+    <p class="hero__availability">{site.availability}</p>
+    <h1 class="hero__title">{site.name}</h1>
+    <p class="hero__role">{site.role} — {site.intro}</p>
+    <p class="hero__trust">
+      {site.yearsExperience} years of experience · {site.fiverr.level}
+    </p>
+    <p class="hero__cta"><a href="/contact/">Get in touch</a></p>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>Selected work</h2>
+    <div class="grid">
+      {featured.map((p) => <ProjectCard project={p} />)}
+    </div>
+    <p><a href="/work/">See all work →</a></p>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-5) var(--space-4);
+  }
+
+  .hero__availability {
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .hero__title {
+    font-size: clamp(4rem, 14vw, 9rem);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__role {
+    font-size: 1.3rem;
+    max-width: 40rem;
+  }
+
+  .hero__trust {
+    color: var(--muted);
+  }
+
+  .hero__cta a {
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+</style>
