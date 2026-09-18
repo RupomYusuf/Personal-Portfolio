@@ -10,23 +10,18 @@ const current = Astro.url.pathname;
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="/" class="site-header__brand">
-      <span class="site-header__dot" aria-hidden="true"></span>
-      {site.name}
-    </a>
+    <a href="/" class="site-header__brand">{site.name}</a>
     <nav aria-label="Main">
       {
         links.map((l) => (
           <a
             href={l.href}
-            class:list={[{ on: current.startsWith(l.href) }]}
             aria-current={current.startsWith(l.href) ? 'page' : undefined}
           >
             {l.label}
           </a>
         ))
       }
-      <a class="site-header__book" href="/contact/">Book Free Call</a>
     </nav>
   </div>
 </header>
@@ -36,8 +31,9 @@ const current = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgb(244 244 246 / 0.75);
+    background: rgb(14 16 32 / 0.7);
     backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
   }
 
   .site-header__inner {
@@ -48,26 +44,13 @@ const current = Astro.url.pathname;
   }
 
   .site-header__brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
     font-weight: 600;
-    font-size: 1.1rem;
-  }
-
-  .site-header__dot {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background: var(--ink);
-    display: inline-grid;
-    place-items: center;
+    font-size: 1.15rem;
   }
 
   nav {
     display: flex;
-    align-items: center;
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 
   nav a {
@@ -82,22 +65,12 @@ const current = Astro.url.pathname;
 
   nav a:hover {
     color: var(--ink);
-    background: rgb(16 16 26 / 0.06);
+    background: rgb(255 255 255 / 0.08);
   }
 
-  nav a.on {
-    color: var(--ink);
+  nav a[aria-current='page'] {
+    background: var(--accent);
+    color: var(--accent-ink);
     font-weight: 600;
-  }
-
-  .site-header__book {
-    background: var(--ink);
-    color: #fff;
-    font-weight: 600;
-  }
-
-  .site-header__book:hover {
-    background: #2a2a32;
-    color: #fff;
   }
 </style>

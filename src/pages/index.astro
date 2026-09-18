@@ -5,8 +5,8 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getProjectsSorted, getFeatured } from '../lib/projects';
 import { site } from '../config';
 import portraitHero from '../assets/portrait-hero.png';
-import imgRose from '../assets/projects/rose-lady/cover.jpg';
 import imgLeaf from '../assets/projects/leafiesta-logo/cover.jpg';
+import imgRose from '../assets/projects/rose-lady/cover.jpg';
 import imgPizza from '../assets/projects/pizza-flyer/cover.jpg';
 import imgCity from '../assets/projects/this-city-is-ours/cover.jpg';
 
@@ -18,35 +18,34 @@ const roles = [
   'Illustration & Character Artist',
   'Print & Flyer Designer',
 ];
-
-const services = [
-  { name: 'Logo & Brand Identity', img: imgLeaf, alt: 'Leafiesta logo design' },
-  { name: 'Character & Illustration', img: imgRose, alt: 'Rose Lady illustration' },
-  { name: 'Print & Flyer Design', img: imgPizza, alt: 'Pizza Friday flyer' },
-  { name: 'Poster & Social Graphics', img: imgCity, alt: 'This City Is Ours poster art' },
-];
 ---
 
 <BaseLayout title={site.name} description={site.intro} ogImage={imgRose.src}>
   <section class="hero">
-    <div class="hero__stage">
-      <p class="hero__name" aria-label={site.name}>
-        <span aria-hidden="true">Rupom</span>
-        <span class="hero__name-second" aria-hidden="true">Morol</span>
-      </p>
-      <div class="hero__portrait">
-        <Image
-          src={portraitHero}
-          alt={`Portrait of ${site.name}, graphic designer`}
-          width={900}
-          priority
-        />
+    <div class="glow hero__glow" aria-hidden="true"></div>
+    <div class="container hero__stage">
+      <p class="hero__eyebrow">{site.availability}</p>
+
+      <div class="hero__stage-inner">
+        <p class="hero__name" aria-label={site.name}>
+          <span aria-hidden="true">Rupom</span>
+          <span class="hero__name-second" aria-hidden="true">Morol</span>
+        </p>
+        <div class="hero__portrait">
+          <Image
+            src={portraitHero}
+            alt={`Portrait of ${site.name}, graphic designer`}
+            width={900}
+            priority
+          />
+        </div>
+        <div class="hero__aside">
+          <p class="hero__iam">I am {site.name}!</p>
+          <p class="hero__blurb">{site.intro}</p>
+          <p class="hero__arrow" aria-hidden="true">↘</p>
+        </div>
       </div>
-      <div class="hero__aside">
-        <p class="hero__iam">I am {site.name}!</p>
-        <p class="hero__blurb">{site.intro}</p>
-        <p class="hero__arrow" aria-hidden="true">↘</p>
-      </div>
+
       <ul class="hero__roles">
         {
           roles.map((r, i) => (
@@ -82,7 +81,12 @@ const services = [
     </div>
     <div class="services__grid">
       {
-        services.map((s) => (
+        [
+          { name: 'Logo & Brand Identity', img: imgLeaf, alt: 'Leafiesta logo design' },
+          { name: 'Character & Illustration', img: imgRose, alt: 'Rose Lady illustration' },
+          { name: 'Print & Flyer Design', img: imgPizza, alt: 'Pizza Friday flyer' },
+          { name: 'Poster & Social Graphics', img: imgCity, alt: 'This City Is Ours poster art' },
+        ].map((s) => (
           <div class="services__card">
             <img src={s.img.src} alt={s.alt} loading="lazy" width="400" height="300" />
             <h3>{s.name}</h3>
@@ -102,37 +106,12 @@ const services = [
     </div>
   </section>
 
-  <section class="container contact-cta" id="contact" data-reveal>
-    <div class="cta__form">
-      <h2 class="cta__title">Ready to start your project?</h2>
-      <form
-        name="contact"
-        method="POST"
-        action="/thanks/"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <p hidden>
-          <label>Don't fill this out: <input name="bot-field" /></label>
-        </p>
-        <div class="cta__row">
-          <label class="sr-only" for="cta-email">Email</label>
-          <input
-            id="cta-email"
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-            autocomplete="email"
-          />
-          <button type="submit" aria-label="Send">→</button>
-        </div>
-      </form>
-      <p class="cta__alt">
-        Or write to me directly:
+  <section class="container" data-reveal>
+    <div class="cta">
+      <div class="cta__inner">
+        <h2>Have work that needs a designer?</h2>
         <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -140,34 +119,61 @@ const services = [
 <style>
   .hero {
     position: relative;
-    overflow: clip;
+  }
+
+  .hero__glow {
+    inset: -30% 20% auto auto;
+    width: 44rem;
+    height: 38rem;
   }
 
   .hero__stage {
     position: relative;
-    max-width: var(--container);
-    margin-inline: auto;
-    padding: var(--space-2) var(--space-2) var(--space-3);
-    min-height: calc(100vh - 4.2rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    padding-block: var(--space-2) var(--space-3);
   }
 
-  /* the giant pixel name, glowing behind the portrait */
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgb(124 107 255 / 0.16);
+    border: 1px solid rgb(124 107 255 / 0.4);
+    color: #cfc9ff;
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.9rem;
+    margin: 0 0 var(--space-2);
+  }
+
+  .hero__eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* portrait centre-stage, pixel name glowing behind */
+  .hero__stage-inner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hero__name {
     position: absolute;
     left: 50%;
-    top: 54%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: 110%;
+    width: 120%;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(4rem, 17vw, 15rem);
+    font-size: clamp(4rem, 16vw, 13rem);
     line-height: 0.82;
     text-transform: uppercase;
     letter-spacing: 0.02em;
@@ -176,7 +182,7 @@ const services = [
   }
 
   .hero__name span {
-    background: linear-gradient(180deg, #ffc27a 8%, var(--accent) 55%, rgb(232 121 43 / 0.15) 96%);
+    background: linear-gradient(180deg, #b9a8ff 8%, var(--accent) 55%, rgb(255 122 216 / 0.1) 96%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -189,25 +195,25 @@ const services = [
   .hero__portrait {
     position: relative;
     z-index: 1;
-    width: clamp(16rem, 38vw, 30rem);
-    margin-inline: auto;
-    filter: drop-shadow(0 2.2rem 3rem rgb(16 16 26 / 0.3));
+    width: clamp(16rem, 36vw, 28rem);
+    filter: drop-shadow(0 2.2rem 3.5rem rgb(6 7 18 / 0.65));
   }
 
   .hero__aside {
     position: absolute;
-    right: var(--space-2);
-    top: 24%;
-    width: 15rem;
+    right: 0;
+    top: 12%;
+    width: 14rem;
     text-align: right;
   }
 
   .hero__iam {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     font-weight: 500;
     margin: 0 0 0.6rem;
+    color: var(--ink);
   }
 
   .hero__blurb {
@@ -218,7 +224,7 @@ const services = [
 
   .hero__arrow {
     font-size: 2rem;
-    color: var(--muted);
+    color: var(--accent);
     margin: 0;
     animation: nudge 2.4s ease-in-out infinite;
   }
@@ -232,7 +238,7 @@ const services = [
     position: relative;
     z-index: 2;
     list-style: none;
-    margin: -1.5rem 0 0;
+    margin: var(--space-2) 0 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -256,27 +262,14 @@ const services = [
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     color: var(--ink);
-    text-shadow: 0 1px 14px rgb(244 244 246 / 0.9);
-  }
-
-  .hero__role-name:first-letter {
-    text-transform: uppercase;
   }
 
   @media (max-width: 56rem) {
-    .hero__stage {
-      min-height: 0;
-      padding-top: var(--space-3);
-    }
-
     .hero__name {
-      position: static;
-      transform: none;
-      width: 100%;
+      width: 130%;
       filter: blur(1px);
-      margin-bottom: -0.4em;
     }
 
     .hero__portrait {
@@ -287,20 +280,16 @@ const services = [
       position: static;
       width: auto;
       text-align: left;
-      margin-top: 1.2rem;
+      margin-top: 1.4rem;
     }
 
     .hero__arrow {
       display: none;
     }
-
-    .hero__roles {
-      margin-top: 1.4rem;
-    }
   }
 
   .statement {
-    padding-block: var(--space-4);
+    padding-block: var(--space-3);
   }
 
   .pill {
@@ -322,7 +311,7 @@ const services = [
   }
 
   .statement__text span {
-    color: var(--accent);
+    color: #8f7dff;
   }
 
   .stats {
@@ -331,11 +320,18 @@ const services = [
     gap: var(--space-2);
   }
 
+  .stats__item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+  }
+
   .stats__item strong {
     font-size: 1.9rem;
     font-weight: 600;
     display: block;
-    color: var(--accent);
+    color: #8f7dff;
   }
 
   .stats__item span {
@@ -355,7 +351,7 @@ const services = [
   }
 
   .services {
-    padding-block: var(--space-2) var(--space-3);
+    padding-block: var(--space-2) var(--space-4);
   }
 
   .work__head {
@@ -372,7 +368,7 @@ const services = [
   }
 
   .work__all:hover {
-    color: var(--accent);
+    color: var(--ink);
   }
 
   .services__grid {
@@ -388,12 +384,12 @@ const services = [
     overflow: hidden;
     transition:
       transform 0.25s ease,
-      box-shadow 0.25s ease;
+      border-color 0.25s ease;
   }
 
   .services__card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 1.2rem 2.4rem rgb(16 16 26 / 0.1);
+    border-color: rgb(124 107 255 / 0.6);
   }
 
   .services__card img {
@@ -412,78 +408,34 @@ const services = [
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: var(--space-2);
+    margin-bottom: var(--space-4);
   }
 
-  .contact-cta {
-    padding-block: var(--space-4) var(--space-5);
-  }
-
-  .cta__form {
-    background: var(--navy);
-    color: var(--navy-ink);
+  .cta {
+    background: linear-gradient(135deg, #7c6bff, #b96bff 55%, #ff7ad8);
+    color: var(--accent-ink);
     border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta__inner {
     padding: var(--space-4) var(--space-3);
-    text-align: center;
-  }
-
-  .cta__title {
-    font-size: clamp(1.7rem, 4vw, 2.8rem);
-    margin: 0 0 var(--space-3);
-    color: var(--navy-ink);
-  }
-
-  .cta__row {
     display: flex;
-    gap: 0.6rem;
-    max-width: 30rem;
-    margin-inline: auto;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .cta__row input {
-    flex: 1;
-    font: inherit;
-    padding: 0.8rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid rgb(255 255 255 / 0.25);
-    background: rgb(255 255 255 / 0.08);
-    color: var(--navy-ink);
+  .cta h2 {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    margin: 0;
+    color: var(--accent-ink);
   }
 
-  .cta__row input::placeholder {
-    color: rgb(244 244 246 / 0.55);
-  }
-
-  .cta__row button {
-    font: inherit;
-    font-weight: 700;
-    width: 3.2rem;
-    border-radius: 999px;
-    border: 0;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.15s ease;
-  }
-
-  .cta__row button:hover {
-    transform: translateY(-2px);
-  }
-
-  .cta__alt {
-    margin: var(--space-2) 0 0;
-    color: rgb(244 244 246 / 0.7);
-  }
-
-  .cta__alt a {
-    color: var(--accent-2);
+  .cta a {
     font-weight: 600;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
+    color: var(--accent-ink);
+    font-size: 1.1rem;
   }
 </style>
