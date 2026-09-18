@@ -1,0 +1,23 @@
+---
+import { site } from '../config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© {year} {site.name} — {site.role}</p>
+    <p class="site-footer__availability">{site.availability}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-3);
+    color: var(--muted);
+  }
+
+  .site-footer__availability {
+    color: var(--accent);
+  }
+</style>
