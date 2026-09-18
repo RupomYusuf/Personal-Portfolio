@@ -93,9 +93,25 @@ const socialLinks = [
   .contact__socials {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: var(--space-1);
     list-style: none;
     padding: 0;
+  }
+
+  .contact__socials a {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.4rem 0.6rem;
+    display: inline-block;
+    border: 1px solid var(--line);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .contact__socials a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   form {

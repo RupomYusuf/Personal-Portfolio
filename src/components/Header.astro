@@ -53,13 +53,15 @@ const current = Astro.url.pathname;
 
   nav {
     display: flex;
-    gap: var(--space-3);
+    gap: var(--space-1);
   }
 
   nav a {
     color: var(--accent-ink);
     text-decoration: none;
     font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    display: inline-block;
   }
 
   nav a:hover {
