@@ -3,14 +3,14 @@
    rounded glass surfaces, Outfit type. One accent family, one radius scale. */
 
 :root {
-  --bg: #0e1020;
+  --bg: #07070d;
   --surface: rgb(255 255 255 / 0.05);
   --surface-solid: #171a30;
   --line: rgb(255 255 255 / 0.09);
   --line-strong: rgb(255 255 255 / 0.16);
-  --ink: #eceafd;
-  --muted: #b9b6e8;
-  --accent: #7c6bff;
+  --ink: #f4f2ff;
+  --muted: #b6b2e0;
+  --accent: #8b78ff;
   --accent-2: #ff7ad8;
   --accent-ink: #0e1020; /* text on accent */
   --font-display: 'Outfit Variable', system-ui, sans-serif;
@@ -33,7 +33,11 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 90% 55% at 75% -10%, rgb(124 107 255 / 0.22), transparent),
+    radial-gradient(ellipse 70% 45% at 5% 115%, rgb(255 122 216 / 0.14), transparent),
+    #07070d;
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   line-height: 1.55;
@@ -97,7 +101,8 @@ img {
 .glow {
   position: absolute;
   pointer-events: none;
-  filter: blur(30px);
+  filter: blur(28px);
+  opacity: 0.9;
   background:
     radial-gradient(circle at 30% 40%, rgb(124 107 255 / 0.5), transparent 60%),
     radial-gradient(circle at 70% 60%, rgb(255 122 216 / 0.3), transparent 55%);
