@@ -13,7 +13,7 @@ const tabs = ['All', ...categories];
   description="Branding, illustration, and print projects by Rupom Morol."
 >
   <section class="container">
-    <h1>Work</h1>
+    <h1>Selected work</h1>
     <div class="filters" role="group" aria-label="Filter projects by category">
       {
         tabs.map((tab, i) => (
@@ -36,46 +36,46 @@ const tabs = ['All', ...categories];
 
 <style>
   h1 {
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    text-transform: uppercase;
-    margin: var(--space-4) 0 var(--space-3);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    margin: var(--space-3) 0 var(--space-3);
   }
 
   .filters {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-1);
+    gap: 0.5rem;
     margin-bottom: var(--space-3);
   }
 
   .filters button {
     font: inherit;
-    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.1rem;
     border: 1px solid var(--line);
+    border-radius: 999px;
     background: transparent;
     color: var(--muted);
     cursor: pointer;
     transition:
       color 0.2s ease,
-      border-color 0.2s ease;
+      background 0.2s ease;
   }
 
   .filters button:hover {
     color: var(--ink);
-    border-color: var(--ink);
+    background: rgb(255 255 255 / 0.08);
   }
 
   .filters button[aria-pressed='true'] {
     background: var(--accent);
     color: var(--accent-ink);
-    border-color: var(--accent);
     font-weight: 600;
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: var(--space-3);
+    gap: var(--space-2);
     padding-bottom: var(--space-5);
   }
 

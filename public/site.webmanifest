@@ -3,7 +3,7 @@
   "short_name": "Rupom Morol",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0b0e",
-  "theme_color": "#0b0b0e",
+  "background_color": "#0e1020",
+  "theme_color": "#0e1020",
   "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }

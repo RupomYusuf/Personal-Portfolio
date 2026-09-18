@@ -5,536 +5,311 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getProjectsSorted, getFeatured } from '../lib/projects';
 import { site } from '../config';
 import portraitHero from '../assets/portrait-hero.png';
-import imgIdentity from '../assets/chips/leafiesta-logo.png';
-import imgIllustration from '../assets/chips/rose-lady.png';
-import imgPrint from '../assets/chips/pizza-flyer.png';
-import imgSocial from '../assets/chips/this-city-is-ours.png';
+import imgIdentity from '../assets/projects/leafiesta-logo/cover.jpg';
+import imgIllustration from '../assets/projects/rose-lady/cover.jpg';
+import imgPrint from '../assets/projects/pizza-flyer/cover.jpg';
+import imgSocial from '../assets/projects/this-city-is-ours/cover.jpg';
 
 const featured = await getFeatured(site.featuredCount);
-const stack = featured.slice(0, 3);
 const projectCount = (await getProjectsSorted()).length;
 
 const services = [
   { name: 'Logo & Brand Identity', img: imgIdentity, alt: 'Leafiesta logo design' },
   { name: 'Character & Illustration', img: imgIllustration, alt: 'Rose Lady illustration' },
-  { name: 'Print & Flyer Design', img: imgPrint, alt: 'Pizza flyer design' },
+  { name: 'Print & Flyer Design', img: imgPrint, alt: 'Pizza Friday flyer' },
   { name: 'Poster & Social Graphics', img: imgSocial, alt: 'This City Is Ours poster art' },
-];
-
-const tools = [
-  { slug: 'adobeillustrator', label: 'Illustrator' },
-  { slug: 'adobephotoshop', label: 'Photoshop' },
-  { slug: 'figma', label: 'Figma' },
-  { slug: 'canva', label: 'Canva' },
-  { slug: 'behance', label: 'Behance' },
-  { slug: 'fiverr', label: 'Fiverr' },
 ];
 ---
 
-<BaseLayout title={site.name} description={site.intro} ogImage={portraitHero.src}>
-  <section class="container hero">
-    <p class="hero__availability">{site.availability}</p>
-    <h1 class="hero__name" aria-label={site.name}>
-      <span class="hero__word hero__word--back" aria-hidden="true">Rupom</span>
+<BaseLayout title={site.name} description={site.intro} ogImage={imgIllustration.src}>
+  <section class="hero">
+    <div class="glow hero__glow" aria-hidden="true"></div>
+    <div class="container hero__grid">
+      <div>
+        <p class="hero__eyebrow">
+          {site.availability}
+        </p>
+        <h1>
+          Design with personality, <span>precision</span> and
+          {site.yearsExperience} years of practice.
+        </h1>
+        <p class="hero__lead">
+          Brand identity, illustration and print by {site.name},
+          {site.fiverr.level}.
+        </p>
+        <a class="hero__cta" href="/contact/">Get in touch</a>
+      </div>
       <div class="hero__portrait">
-        <div class="hero__badge" aria-hidden="true">
-          <svg viewBox="0 0 100 100" class="hero__badge-ring">
-            <defs>
-              <path
-                id="badge-circle"
-                d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
-              ></path>
-            </defs>
-            <circle cx="50" cy="50" r="50" class="hero__badge-bg"></circle>
-            <text class="hero__badge-text">
-              <textPath href="#badge-circle">
-                Available for work · Let's talk · Available for work ·
-              </textPath>
-            </text>
-          </svg>
-          <span class="hero__badge-star">*</span>
-        </div>
         <Image
           src={portraitHero}
           alt={`Portrait of ${site.name}, graphic designer`}
-          width={1000}
+          width={900}
           priority
         />
       </div>
-      <span class="hero__word hero__word--front" aria-hidden="true">Morol</span>
-    </h1>
-    <div class="hero__under">
-      <p class="hero__role">{site.role}</p>
-      <p class="hero__intro">{site.intro}</p>
-      <p class="hero__cta"><a href="/contact/">Get in touch</a></p>
     </div>
   </section>
 
-  <section class="container stats" data-reveal>
-    <div class="stats__item"><strong>8+</strong><span>Years of experience</span></div>
-    <div class="stats__item"><strong>{projectCount}</strong><span>Projects in this portfolio</span></div>
-    <div class="stats__item"><strong>L2</strong><span>Fiverr Level 2 Seller</span></div>
+  <section class="container" data-reveal>
+    <div class="stats">
+      <div class="stats__item">
+        <strong>{site.yearsExperience}+</strong><span>Years of experience</span>
+      </div>
+      <div class="stats__item">
+        <strong>{projectCount}</strong><span>Projects in this portfolio</span>
+      </div>
+      <div class="stats__item">
+        <strong>L2</strong><span>Fiverr Level 2 Seller</span>
+      </div>
+    </div>
   </section>
 
   <section class="container services" data-reveal>
-    <h2 class="services__title">What I do</h2>
-    <ul class="services__list">
+    <h2 class="section-title">What I do</h2>
+    <div class="services__grid">
       {
         services.map((s) => (
-          <li class="services__row">
-            <span class="services__name">{s.name}</span>
-            <img class="services__thumb" src={s.img.src} alt={s.alt} loading="lazy" width="112" height="84" />
-          </li>
+          <div class="services__card">
+            <img src={s.img.src} alt={s.alt} loading="lazy" width="400" height="300" />
+            <h3>{s.name}</h3>
+          </div>
         ))
       }
-    </ul>
+    </div>
   </section>
 
-  <section class="container stackwrap" data-reveal>
+  <section class="container" data-reveal>
     <div class="work__head">
-      <h2>Selected work</h2>
-      <p><a href="/work/">See all work →</a></p>
+      <h2 class="section-title">Selected work</h2>
+      <a class="work__all" href="/work/">See all work →</a>
     </div>
-    <div class="stack">
-      {
-        stack.map((p, i) => (
-          <article class="stack__card" style={`--i:${i}`}>
-            <div class="stack__info">
-              <span class="stack__num">{String(i + 1).padStart(2, '0')}</span>
-              <p class="stack__meta">
-                {p.data.category} · {p.data.year}
-              </p>
-              <h3 class="stack__title">
-                <a href={`/work/${p.id}/`}>{p.data.title}</a>
-              </h3>
-              <a class="stack__link" href={`/work/${p.id}/`}>
-                View project →
-              </a>
-            </div>
-            <a class="stack__media" href={`/work/${p.id}/`} tabindex="-1" aria-hidden="true">
-              <Image src={p.data.cover} alt="" width={1200} loading="lazy" />
-            </a>
-          </article>
-        ))
-      }
-    </div>
-    <div class="grid grid--rest">
-      {featured.slice(3).map((p) => <ProjectCard project={p} />)}
+    <div class="grid">
+      {featured.map((p) => <ProjectCard project={p} />)}
     </div>
   </section>
 
-  <section class="container tools" data-reveal>
-    <p class="tools__label">Tools I work with</p>
-    <ul class="tools__list">
-      {
-        tools.map((t) => (
-          <li class="tools__item">
-            <img
-              src={`https://cdn.simpleicons.org/${t.slug}/f2f1ee`}
-              alt={t.label}
-              width="28"
-              height="28"
-              loading="lazy"
-            />
-            <span>{t.label}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <section class="cta" data-reveal>
-    <div class="container cta__inner">
-      <h2 class="cta__title">Have work that needs a designer?</h2>
-      <p class="cta__email">
+  <section class="container" data-reveal>
+    <div class="cta">
+      <div class="cta__inner">
+        <h2>Have work that needs a designer?</h2>
         <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero {
-    padding-block: var(--space-2) var(--space-3);
-  }
-
-  .hero__availability {
-    color: var(--accent);
-    font-weight: 600;
-    margin: 0 0 var(--space-2);
-  }
-
-  /* the name IS the design: two giant lines, portrait sandwiched between */
-  .hero__name {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-
-  .hero__word {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(4.5rem, 19vw, 17rem);
-    line-height: 0.86;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-
-  .hero__word--back {
-    align-self: flex-start;
     position: relative;
-    z-index: 1;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--ink);
+    padding-block: var(--space-4) var(--space-4);
   }
 
-  .hero__word--front {
-    align-self: flex-end;
+  .hero__glow {
+    inset: -25% 25% auto auto;
+    width: 36rem;
+    height: 32rem;
+  }
+
+  .hero__grid {
     position: relative;
-    z-index: 3;
-    margin-top: -0.18em;
-  }
-
-  .hero__portrait {
-    align-self: center;
-    width: clamp(14rem, 34vw, 30rem);
-    margin-block: -0.65em;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero__portrait::before {
-    content: '';
-    position: absolute;
-    inset: auto -7% -6% -7%;
-    height: 38%;
-    background: var(--accent);
-  }
-
-  .hero__portrait :global(img) {
-    position: relative;
-    display: block;
-  }
-
-  /* rotating availability badge overlapping the portrait corner */
-  .hero__badge {
-    position: absolute;
-    top: -2.4rem;
-    right: -2.4rem;
-    width: clamp(6rem, 10vw, 8.5rem);
-    aspect-ratio: 1;
-    z-index: 4;
-  }
-
-  .hero__badge-ring {
-    width: 100%;
-    height: 100%;
-    animation: badge-spin 16s linear infinite;
-  }
-
-  .hero__badge-bg {
-    fill: var(--accent);
-  }
-
-  .hero__badge-text {
-    fill: var(--accent-ink);
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 8.2px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .hero__badge-star {
-    position: absolute;
-    inset: 0;
     display: grid;
-    place-items: center;
-    font-family: var(--font-display);
-    font-size: 2.4rem;
-    color: var(--accent-ink);
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-3);
+    align-items: center;
   }
 
-  @keyframes badge-spin {
-    to {
-      transform: rotate(360deg);
-    }
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgb(124 107 255 / 0.16);
+    border: 1px solid rgb(124 107 255 / 0.4);
+    color: #cfc9ff;
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.9rem;
+    margin: 0 0 1.4rem;
   }
 
-  .hero__under {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-2) var(--space-3);
-    margin-top: var(--space-3);
+  .hero__eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
   }
 
-  .hero__role {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.6rem;
-    margin: 0;
-    color: var(--ink);
+  h1 {
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    margin: 0 0 1.2rem;
   }
 
-  .hero__intro {
-    max-width: 44rem;
+  h1 span {
+    color: #8f7dff;
+  }
+
+  .hero__lead {
     color: var(--muted);
-    margin: 0;
+    font-size: 1.15rem;
+    max-width: 30rem;
+    margin: 0 0 1.8rem;
   }
 
-  .hero__cta a {
+  .hero__cta {
     display: inline-block;
-    font-weight: 600;
     background: var(--accent);
     color: var(--accent-ink);
-    padding: 0.7rem 1.6rem;
-    text-decoration: none;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 999px;
     transition: transform 0.2s ease;
   }
 
-  .hero__cta a:hover {
-    transform: translateY(-1px);
+  .hero__cta:hover {
+    transform: translateY(-2px);
   }
 
-  .hero__cta a:active {
+  .hero__cta:active {
     transform: scale(0.98);
   }
 
+  .hero__portrait img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+  }
+
   @media (max-width: 56rem) {
-    .hero__portrait {
-      width: min(70vw, 22rem);
-      align-self: flex-end;
+    .hero__grid {
+      grid-template-columns: 1fr;
     }
 
-    .hero__badge {
-      right: -1rem;
+    .hero__portrait {
+      max-width: 22rem;
     }
   }
 
   .stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    padding-block: var(--space-3);
-    border-block: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    margin-block: var(--space-2) var(--space-4);
   }
 
   .stats__item {
-    display: flex;
-    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
   }
 
   .stats__item strong {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-    color: var(--accent);
+    font-size: 2.2rem;
+    font-weight: 600;
+    display: block;
+    color: #8f7dff;
   }
 
   .stats__item span {
     color: var(--muted);
   }
 
-  .services {
-    padding-block: var(--space-4);
+  @media (max-width: 48rem) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .services__title {
-    font-size: clamp(2rem, 5vw, 3.2rem);
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     margin: 0 0 var(--space-3);
   }
 
-  .services__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .services {
+    padding-block: var(--space-2) var(--space-4);
   }
 
-  .services__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     gap: var(--space-2);
-    padding-block: var(--space-2);
-    border-top: 1px solid var(--line);
-    transition: background 0.25s ease;
   }
 
-  .services__row:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .services__row:hover {
+  .services__card {
     background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease;
   }
 
-  .services__name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.6rem, 4.5vw, 3.4rem);
-    text-transform: uppercase;
-    color: var(--ink);
+  .services__card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(124 107 255 / 0.6);
   }
 
-  .services__row:hover .services__name {
-    color: var(--accent);
-  }
-
-  .services__thumb {
-    width: 7rem;
-    height: auto;
+  .services__card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
   }
 
-  /* selected work: stacked deck with depth */
-  .stackwrap {
-    padding-block: var(--space-2) var(--space-4);
+  .services__card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 1rem 1.2rem;
   }
 
   .work__head {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
+    align-items: baseline;
     gap: var(--space-2);
     margin-bottom: var(--space-3);
   }
 
-  .work__head h2 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-  }
-
-  .stack {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .stack__card {
-    position: sticky;
-    top: calc(4.2rem + var(--i) * 1.6rem);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3);
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    padding: var(--space-3);
-    min-height: 22rem;
-  }
-
-  .stack__num {
-    display: inline-grid;
-    place-items: center;
-    width: 3rem;
-    height: 3rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .stack__meta {
+  .work__all {
     color: var(--muted);
-    margin: var(--space-2) 0 0;
-  }
-
-  .stack__title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    margin: 0.3rem 0 var(--space-2);
-  }
-
-  .stack__title a {
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .stack__title a:hover {
-    color: var(--accent);
-  }
-
-  .stack__link {
     font-weight: 600;
   }
 
-  .stack__media {
-    display: block;
-    overflow: hidden;
-    border: 1px solid var(--line);
+  .work__all:hover {
+    color: var(--ink);
   }
 
-  .stack__media :global(img) {
-    transition: transform 0.5s ease;
-  }
-
-  .stack__card:hover .stack__media :global(img) {
-    transform: scale(1.04);
-  }
-
-  .grid--rest {
+  .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: var(--space-3);
-    margin-top: var(--space-3);
-  }
-
-  @media (max-width: 56rem) {
-    .stack__card {
-      grid-template-columns: 1fr;
-      position: static;
-      min-height: 0;
-    }
-  }
-
-  .tools {
-    padding-block: var(--space-2) var(--space-4);
-  }
-
-  .tools__label {
-    color: var(--muted);
-    margin: 0 0 var(--space-2);
-  }
-
-  .tools__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .tools__item {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    border: 1px solid var(--line);
-    padding: 0.5rem 1rem;
-  }
-
-  .tools__item span {
-    color: var(--muted);
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
   }
 
   .cta {
-    background: var(--accent);
+    background: linear-gradient(135deg, #7c6bff, #b96bff 55%, #ff7ad8);
     color: var(--accent-ink);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
   }
 
   .cta__inner {
-    padding-block: var(--space-5);
+    padding: var(--space-4) var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .cta__title {
+  .cta h2 {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    margin: 0;
     color: var(--accent-ink);
-    font-size: clamp(2.4rem, 7vw, 5.5rem);
-    text-transform: uppercase;
-    max-width: 60rem;
   }
 
-  .cta__email a {
-    color: var(--accent-ink);
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  .cta a {
     font-weight: 600;
+    color: var(--accent-ink);
+    font-size: 1.1rem;
   }
 </style>

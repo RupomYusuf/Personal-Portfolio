@@ -27,52 +27,50 @@ const current = Astro.url.pathname;
 </header>
 
 <style>
-  /* solid accent band, like a printed spine */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--accent);
-    border-bottom: 1px solid var(--accent-ink);
+    background: rgb(14 16 32 / 0.7);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
   }
 
   .site-header__inner {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    padding-block: 0.7rem;
+    align-items: center;
+    padding-block: 0.9rem;
   }
 
   .site-header__brand {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.35rem;
-    color: var(--accent-ink);
-    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.15rem;
   }
 
   nav {
     display: flex;
-    gap: var(--space-1);
+    gap: 0.4rem;
   }
 
   nav a {
-    color: var(--accent-ink);
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 0.75rem;
-    display: inline-block;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
   }
 
   nav a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+    color: var(--ink);
+    background: rgb(255 255 255 / 0.08);
   }
 
   nav a[aria-current='page'] {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
   }
 </style>
