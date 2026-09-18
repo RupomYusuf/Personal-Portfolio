@@ -158,6 +158,8 @@ export const site = {
     { label: 'LinkedIn', url: '' }, // PLACEHOLDER — swap at launch
   ],
   formspreeId: '', // set at launch to activate the contact form; '' renders the email fallback
+  // Ceiling, not a guarantee: home renders however many projects actually carry
+  // featured: true, up to this number (may be fewer — that's handled gracefully).
   featuredCount: 6,
 } as const;
 ```
@@ -1201,17 +1203,24 @@ git commit -m "feat: home page with hero, trust signals, featured teaser"
 ### Task 8: About page + placeholder resume + Person JSON-LD
 
 **Files:**
-- Create: `src/pages/about.astro`, `scripts/make-placeholder-resume.mjs`, `public/resume.pdf` (generated)
-- Modify: `package.json` (script `resume`)
+- Create: `src/pages/about.astro`, `public/resume.pdf` (static placeholder, committed directly)
 
 **Interfaces:**
 - Consumes: `site` config.
 - Produces: `/about/` route; `/resume.pdf` static asset.
 
-- [ ] **Step 1: resume script.** Add to `package.json` scripts: `"resume": "node scripts/make-placeholder-resume.mjs"`. Create `scripts/make-placeholder-resume.mjs` — a minimal single-page PDF whose xref offsets are computed at write time:
+- [ ] **Step 1: static placeholder résumé.** `public/resume.pdf` is a committed static binary — no generator script (hand-computed PDF offsets in repo code would fail silently as a corrupt PDF for content that never varies). Create it once, verify it opens, commit the binary:
+
+  1. Save the script below to a **temporary file outside the repo** (e.g. `%TEMP%\make-resume-once.mjs`), then run `node %TEMP%\make-resume-once.mjs "C:\Users\Rupommoral\Documents\portfolio\public\resume.pdf"` (the script takes the output path as `process.argv[2]`).
+  2. Open `public/resume.pdf` in a PDF viewer and confirm it renders "Rupom Morol" plus the placeholder line. This manual check is the gate — do not commit an unviewed PDF.
+  3. Delete the temp script. Commit only the PDF.
 
 ```js
+// make-resume-once.mjs — run once, verify output, delete. NOT committed.
 import { writeFileSync } from 'node:fs';
+
+const out = process.argv[2];
+if (!out) throw new Error('usage: node make-resume-once.mjs <output.pdf>');
 
 const text =
   'BT /F1 24 Tf 72 720 Td (Rupom Morol) Tj 0 -36 Td /F1 14 Tf \
@@ -1237,11 +1246,9 @@ pdf +=
   offsets.map((o) => `${String(o).padStart(10, '0')} 00000 n \n`).join('') +
   `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${xrefStart}\n%%EOF\n`;
 
-writeFileSync('public/resume.pdf', pdf, 'latin1');
-console.log('wrote public/resume.pdf');
+writeFileSync(out, pdf, 'latin1');
+console.log('wrote', out);
 ```
-
-Run: `npm run resume` — expected: `public/resume.pdf` opens in any PDF viewer with the placeholder line.
 
 - [ ] **Step 2: `src/pages/about.astro`**
 
