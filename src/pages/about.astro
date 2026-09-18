@@ -87,22 +87,19 @@ const person = {
 
   .about__photo {
     position: relative;
-  }
-
-  .about__photo::before {
-    content: '';
-    position: absolute;
-    left: -6%;
-    top: -4%;
-    width: 45%;
-    height: 38%;
-    background: var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    align-items: end;
+    justify-content: center;
   }
 
   .about__photo :global(img) {
-    border-radius: var(--radius-lg);
-    position: relative;
+    width: 100%;
     display: block;
+    margin-bottom: -2px;
   }
 
   @media (max-width: 56rem) {
