@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config';
+
+const sameAs = [site.fiverr.url, ...site.socials.map((s) => s.url)].filter(Boolean);
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  description: site.intro,
+  sameAs,
+};
+---
+
+<BaseLayout
+  title="About"
+  description={`${site.name} — ${site.role}. ${site.intro}`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+  <section class="container about">
+    <h1>About</h1>
+    <div class="about__grid">
+      <div>
+        <p class="about__trust">
+          {site.yearsExperience} years of experience ·
+          {
+            site.fiverr.url ? (
+              <a href={site.fiverr.url}>{site.fiverr.level}</a>
+            ) : (
+              <span>{site.fiverr.level} <em>(profile link pending)</em></span>
+            )
+          }
+        </p>
+        <p>
+          I'm {site.name}, a graphic designer working across brand identity and
+          print. {site.intro}
+        </p>
+        <p><em>Placeholder bio — replace with your real story.</em></p>
+
+        <h2>Capabilities</h2>
+        <ul>
+          <li>Brand identity systems</li>
+          <li>Editorial &amp; print layout</li>
+          <li>Packaging</li>
+          <li>Poster design</li>
+        </ul>
+
+        <h2>Tools</h2>
+        <p>Illustrator · InDesign · Photoshop · Figma</p>
+
+        <p><a href="/resume.pdf" download>Download resume (PDF)</a></p>
+        <p><em>Placeholder PDF — replace <code>public/resume.pdf</code> with the real CV.</em></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .about__grid {
+    max-width: 42rem;
+  }
+
+  .about__trust {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: var(--space-3);
+  }
+</style>
