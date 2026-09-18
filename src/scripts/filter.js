@@ -1,4 +1,4 @@
-/** Category filter for the Work grid. Tabs carry data-category; cards carry
+/** Category filter for the Work grid. Tabs carry data-filter; cards carry
  * data-category. 'All' shows everything. */
 export function initFilter() {
   const tabs = document.querySelectorAll('[data-filter]');

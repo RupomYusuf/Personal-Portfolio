@@ -53,6 +53,10 @@ img {
   display: block;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .container {
   max-width: var(--container);
   margin-inline: auto;
