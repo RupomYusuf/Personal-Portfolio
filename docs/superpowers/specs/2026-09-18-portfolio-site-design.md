@@ -45,6 +45,8 @@ testimonial: string?    # short client quote + attribution (e.g. Fiverr review, 
 order: number?          # optional manual ordering; default reverse-chronological
 ```
 
+**Cover images — standing rule:** every cover (placeholder or real) is ≥1200×630 (1.91:1), so social/OG previews never render blurry or cropped on any project. Enforced by the project template's guidance and checked in the visual pass; the schema validates the path exists, the visual check validates the ratio.
+
 Body = the project description following a light **Problem → Approach → Outcome** case-study structure (a few sentences each — this is the single biggest lever for perceived quality). Each gallery image gets alt text via a per-project frontmatter image list (no CMS needed).
 
 Adding a project = copy a template file, fill the frontmatter, write the case study, drop images in the folder. A new category value needs zero code changes.
@@ -53,7 +55,7 @@ Adding a project = copy a template file, fill the frontmatter, write the case st
 
 - **Home** — Name, tagline ("Graphic Designer"), one-line intro, hero states years of experience and Fiverr Level 2 as trust signals; teaser grid of 4–6 works drawn from `featured: true`; "Get in touch" CTA. Oversized display typography.
 - **Work** — Responsive card grid (cover image, title, category, year) with category filter tabs derived from content. In-progress pieces carry a visible "In progress" badge.
-- **Project detail** (`/work/<slug>/`) — Image gallery with lightbox, case-study description, metadata (category, year, client), testimonial near the bottom when present. WIP badge carried through.
+- **Project detail** (`/work/<slug>/`) — Image gallery with lightbox, case-study description, metadata (category, year, client), testimonial near the bottom when present. WIP badge carried through. **WIP indexing:** pages of `status: wip` projects emit `<meta name="robots" content="noindex">` and are excluded from the sitemap — half-finished case studies stay unlisted until promoted to `published`, at which point they index automatically with no extra step.
 - **About** — Bio, years of experience, skills/tools list, Fiverr Level 2 badge with profile link, optional portrait, and a downloadable resume/CV PDF (`public/resume.pdf` placeholder).
 - **Contact** — Email and social links **including Fiverr profile**, plus a backend-free contact form (see below) and a current-availability statement ("Currently booking new projects" / "Booked through \<month\>") so the CTA reads as active. Availability lives in one config constant used by Contact and the hero.
 - **404** — On-brand not-found page (same typography/accent) with links back to Work and Home.
