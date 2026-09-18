@@ -9,7 +9,7 @@ featured: true
 client: "Lumen Coffee Co. (placeholder)"
 tags: ["Illustrator", "InDesign"]
 testimonial:
-  quote: "Rupom took our scattered ideas and turned them into a brand we're proud of."
+  quote: "PLACEHOLDER quote — swap with a real client testimonial (with permission)"
   attribution: "Placeholder review — swap with a real client quote (with permission)"
 order: 1
 images:
