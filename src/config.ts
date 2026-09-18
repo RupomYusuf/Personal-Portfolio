@@ -19,8 +19,8 @@ export const site = {
     { label: 'Behance', url: 'https://www.behance.net/RupomsDesign' },
     { label: 'Behance · Print', url: 'https://www.behance.net/rupomm' },
   ],
-  // Contact form is Netlify-native (data-netlify) — no third-party service.
+  // Contact form is Netlify-native (data-netlify) : no third-party service.
   featuredCount: 6,
   // Ceiling, not a guarantee: home renders however many projects actually carry
-  // featured: true, up to this number (may be fewer — that's handled gracefully).
+  // featured: true, up to this number (may be fewer, handled gracefully).
 } as const;

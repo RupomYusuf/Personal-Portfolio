@@ -34,7 +34,7 @@ const tools = [
 <BaseLayout title={site.name} description={site.intro} ogImage={portraitHero.src}>
   <section class="container hero">
     <p class="hero__availability">{site.availability}</p>
-    <div class="hero__name" aria-label={site.name}>
+    <h1 class="hero__name" aria-label={site.name}>
       <span class="hero__word hero__word--back" aria-hidden="true">Rupom</span>
       <div class="hero__portrait">
         <div class="hero__badge" aria-hidden="true">
@@ -62,7 +62,7 @@ const tools = [
         />
       </div>
       <span class="hero__word hero__word--front" aria-hidden="true">Morol</span>
-    </div>
+    </h1>
     <div class="hero__under">
       <p class="hero__role">{site.role}</p>
       <p class="hero__intro">{site.intro}</p>
@@ -168,6 +168,7 @@ const tools = [
   .hero__name {
     display: flex;
     flex-direction: column;
+    margin: 0;
   }
 
   .hero__word {

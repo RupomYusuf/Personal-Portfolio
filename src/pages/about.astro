@@ -18,7 +18,7 @@ const person = {
 
 <BaseLayout
   title="About"
-  description={`${site.name} — ${site.role}. ${site.intro}`}
+  description={`${site.name}, ${site.role}. ${site.intro}`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(person)} />
 
@@ -48,7 +48,7 @@ const person = {
           I'm {site.name}, a graphic designer working across brand identity and
           print. {site.intro}
         </p>
-        <p><em>Placeholder bio — replace with your real story.</em></p>
+        <p><em>Placeholder bio: replace with your real story.</em></p>
 
         <h2>Capabilities</h2>
         <ul>
@@ -62,7 +62,7 @@ const person = {
         <p>Illustrator · InDesign · Photoshop · Figma</p>
 
         <p><a href="/resume.pdf" download>Download resume (PDF)</a></p>
-        <p><em>Placeholder PDF — replace <code>public/resume.pdf</code> with the real CV.</em></p>
+        <p><em>Placeholder PDF: replace <code>public/resume.pdf</code> with the real CV.</em></p>
       </div>
     </div>
   </section>

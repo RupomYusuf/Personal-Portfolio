@@ -34,9 +34,25 @@ const { title, description, ogImage, noindex } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <Seo title={title} description={description} image={ogImage} noindex={noindex} />
   </head>
+  <style>
+    .skip-link {
+      position: absolute;
+      left: -100vw;
+      top: 0;
+      background: var(--accent);
+      color: var(--accent-ink);
+      padding: 0.6rem 1rem;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      left: 0;
+    }
+  </style>
   <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <Header />
-    <main class="page"><slot /></main>
+    <main id="main" class="page"><slot /></main>
     <Footer />
     <script>
       import { initReveal } from '../scripts/reveal';

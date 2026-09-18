@@ -10,7 +10,7 @@ const socialLinks = [
 
 <BaseLayout
   title="Contact"
-  description={`Get in touch with ${site.name} — ${site.availability}.`}
+  description={`Get in touch with ${site.name}. ${site.availability}.`}
 >
   <section class="container contact">
     <h1>Contact</h1>
@@ -61,6 +61,15 @@ const socialLinks = [
     </form>
   </section>
 </BaseLayout>
+
+<script>
+  // prevent double submission while the Netlify form POST is in flight
+  const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
+  form?.addEventListener('submit', () => {
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn instanceof HTMLButtonElement) btn.disabled = true;
+  });
+</script>
 
 <style>
   .contact {
