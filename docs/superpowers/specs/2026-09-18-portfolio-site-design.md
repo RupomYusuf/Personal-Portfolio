@@ -41,7 +41,7 @@ status: published | wip
 client: string?         # optional
 featured: boolean?      # drives the home-page teaser; home curation independent of the Work grid
 tags: string[]?         # tools/software used (Illustrator, Figma, …); enables future filter-by-tool without a schema change
-testimonial: string?    # short client quote + attribution (e.g. Fiverr review, with permission)
+testimonial: {quote, attribution}?  # structured client quote (e.g. Fiverr review, with permission) — object form renders consistently
 order: number?          # optional manual ordering; default reverse-chronological
 ```
 
